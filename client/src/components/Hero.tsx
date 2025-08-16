@@ -35,6 +35,49 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
+  // Function to get position and scale for each image
+  const getImageStyle = (index: number) => {
+    const isActive = index === currentSlide;
+    
+    if (isActive) {
+      // Active image moves to center and scales up
+      return {
+        transform: 'translateX(-50%) translateY(-50%) scale(1.2)',
+        left: '50%',
+        top: '50%',
+        zIndex: 30,
+        opacity: 1
+      };
+    } else {
+      // Inactive images stay in their original positions
+      const positions = {
+        0: { // Left image
+          transform: 'translateX(20%) translateY(-30%) scale(0.85)',
+          left: '10%',
+          top: '60%',
+          zIndex: 20,
+          opacity: 0.7
+        },
+        1: { // Center image  
+          transform: 'translateX(-50%) translateY(-40%) scale(0.9)',
+          left: '50%',
+          top: '65%',
+          zIndex: 20,
+          opacity: 0.7
+        },
+        2: { // Right image
+          transform: 'translateX(-120%) translateY(-30%) scale(0.85)',
+          left: '90%',
+          top: '60%',
+          zIndex: 20,
+          opacity: 0.7
+        }
+      };
+      
+      return positions[index as keyof typeof positions] || positions[1];
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen overflow-hidden">
       {/* Enhanced Background matching reference */}
@@ -118,75 +161,51 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Food Images in Curved Layout like Reference */}
+          {/* Food Images with Dynamic Centering Animation */}
           <div className="relative flex justify-center items-center">
             <div className="relative w-full max-w-5xl h-80 lg:h-96">
               
-              {/* Curved arrangement of food images */}
-              <div className="absolute inset-0 flex items-end justify-center">
-                
-                {/* Left Image - Vada/Round items */}
-                <div 
-                  className={`absolute left-0 bottom-0 transition-all duration-1000 ease-in-out ${
-                    currentSlide === 0 
-                      ? 'w-72 h-72 z-30 scale-110 -rotate-6' 
-                      : 'w-56 h-56 z-20 scale-90 opacity-75'
-                  }`}
-                  style={{ transform: `translateX(10%) translateY(-20%) ${currentSlide === 0 ? 'scale(1.1) rotate(-6deg)' : 'scale(0.9)'}` }}
-                >
-                  <img
-                    src={slides[0].image}
-                    alt={slides[0].alt}
-                    className="w-full h-full object-cover rounded-full shadow-2xl"
-                    data-testid="img-hero-1"
-                  />
-                  {currentSlide === 0 && (
-                    <div className="absolute inset-0 ring-4 ring-orange-400 rounded-full animate-pulse"></div>
-                  )}
-                </div>
-
-                {/* Center Image - Main Thali */}
-                <div 
-                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 transition-all duration-1000 ease-in-out ${
-                    currentSlide === 1 
-                      ? 'w-80 h-64 z-30 scale-115' 
-                      : 'w-64 h-48 z-20 scale-90 opacity-75'
-                  }`}
-                  style={{ transform: `translateX(-50%) translateY(-10%) ${currentSlide === 1 ? 'scale(1.15)' : 'scale(0.9)'}` }}
-                >
-                  <img
-                    src={slides[1].image}
-                    alt={slides[1].alt}
-                    className="w-full h-full object-cover rounded-2xl shadow-2xl"
-                    data-testid="img-hero-2"
-                  />
-                  {currentSlide === 1 && (
-                    <div className="absolute inset-0 ring-4 ring-orange-400 rounded-2xl animate-pulse"></div>
-                  )}
-                </div>
-
-                {/* Right Image - Idli/Round items */}
-                <div 
-                  className={`absolute right-0 bottom-0 transition-all duration-1000 ease-in-out ${
-                    currentSlide === 2 
-                      ? 'w-72 h-72 z-30 scale-110 rotate-6' 
-                      : 'w-56 h-56 z-20 scale-90 opacity-75'
-                  }`}
-                  style={{ transform: `translateX(-10%) translateY(-20%) ${currentSlide === 2 ? 'scale(1.1) rotate(6deg)' : 'scale(0.9)'}` }}
-                >
-                  <img
-                    src={slides[2].image}
-                    alt={slides[2].alt}
-                    className="w-full h-full object-cover rounded-full shadow-2xl"
-                    data-testid="img-hero-3"
-                  />
-                  {currentSlide === 2 && (
-                    <div className="absolute inset-0 ring-4 ring-orange-400 rounded-full animate-pulse"></div>
-                  )}
-                </div>
+              {/* Dynamic image positioning with center focus */}
+              <div className="absolute inset-0">
+                {slides.map((slide, index) => {
+                  const style = getImageStyle(index);
+                  const isActive = index === currentSlide;
+                  
+                  return (
+                    <div
+                      key={slide.id}
+                      className="absolute transition-all duration-1000 ease-in-out"
+                      style={{
+                        transform: style.transform,
+                        left: style.left,
+                        top: style.top,
+                        zIndex: style.zIndex,
+                        opacity: style.opacity,
+                        width: isActive ? '320px' : '240px',
+                        height: isActive ? '320px' : '240px',
+                      }}
+                    >
+                      <img
+                        src={slide.image}
+                        alt={slide.alt}
+                        className={`w-full h-full object-cover shadow-2xl ${
+                          index === 1 ? 'rounded-2xl' : 'rounded-full'
+                        }`}
+                        data-testid={`img-hero-${index + 1}`}
+                      />
+                      
+                      {/* Enhanced ring highlight for active image */}
+                      {isActive && (
+                        <div className={`absolute inset-0 ring-4 ring-orange-400 ${
+                          index === 1 ? 'rounded-2xl' : 'rounded-full'
+                        } animate-pulse`}></div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
-              {/* Active image title overlay */}
+              {/* Active image title overlay - always centered */}
               <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-40">
                 <div className="bg-white/90 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg border border-orange-200">
                   <h3 className="text-green-800 font-bold text-lg text-center">
