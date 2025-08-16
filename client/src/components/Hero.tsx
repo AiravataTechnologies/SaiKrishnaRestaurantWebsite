@@ -32,6 +32,65 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
+  // Calculate positions for overlapping images
+  const getImageStyle = (index: number) => {
+    const currentIndex = currentSlide;
+    const totalImages = slides.length;
+    
+    // Calculate the position relative to current slide
+    let position = (index - currentIndex + totalImages) % totalImages;
+    
+    // Position 0: Left side
+    // Position 1: Center (main/front)
+    // Position 2: Right side
+    
+    const baseStyles = {
+      position: 'absolute' as const,
+      transition: 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+      width: '350px',
+      height: '350px',
+      objectFit: 'contain' as const,
+      objectPosition: 'center' as const,
+    };
+
+    switch (position) {
+      case 0: // Left position
+        return {
+          ...baseStyles,
+          left: '5%',
+          top: '50%',
+          transform: 'translateY(-50%) scale(0.7)',
+          zIndex: 10,
+          opacity: 0.8,
+        };
+      case 1: // Center position (main)
+        return {
+          ...baseStyles,
+          left: '50%',
+          top: '50%',
+          transform: 'translateX(-50%) translateY(-50%) scale(1)',
+          zIndex: 30,
+          opacity: 1,
+        };
+      case 2: // Right position
+        return {
+          ...baseStyles,
+          right: '5%',
+          top: '50%',
+          transform: 'translateY(-50%) scale(0.7)',
+          zIndex: 10,
+          opacity: 0.8,
+        };
+      default:
+        return {
+          ...baseStyles,
+          opacity: 0,
+          transform: 'scale(0.5)',
+          zIndex: 0,
+        };
+    }
+  };
+
   return (
     <section 
       id="home" 
@@ -69,70 +128,43 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Overlapping Images Container */}
-          <div className="relative w-full max-w-4xl mx-auto mb-20 flex justify-center">
-            <div className="relative h-96 lg:h-[500px] w-[600px]">
-              
-              {/* All images in one container that slides together */}
-              <div 
-                className="absolute inset-0 transition-transform duration-1500 ease-in-out"
-                style={{
-                  transform: `translateX(${-currentSlide * 120}px)` // Slide all images together
-                }}
-              >
-                {slides.map((slide, index) => {
-                  // Calculate z-index and scale based on current slide
-                  const isActive = index === currentSlide;
-                  const isNext = index === (currentSlide + 1) % slides.length;
-                  const isPrev = index === (currentSlide - 1 + slides.length) % slides.length;
-                  
-                  let zIndex = 10;
-                  let scale = 0.85;
-                  let opacity = 0.7;
-                  let translateX = index * 120; // Base horizontal offset
-                  
-                  if (isActive) {
-                    zIndex = 30;
-                    scale = 1;
-                    opacity = 1;
-                  } else if (isNext || isPrev) {
-                    zIndex = 20;
-                    scale = 0.9;
-                    opacity = 0.8;
-                  }
-
-                  return (
-                    <img
-                      key={slide.id}
-                      src={slide.image}
-                      alt={slide.alt}
-                      className="absolute transition-all duration-1500 ease-in-out"
-                      style={{
-                        left: `${translateX}px`,
-                        top: '50%',
-                        transform: `translateY(-50%) scale(${scale})`,
-                        width: '400px',
-                        height: '400px',
-                        objectFit: 'contain',
-                        objectPosition: 'center',
-                        zIndex: zIndex,
-                        opacity: opacity,
-                        transformOrigin: 'center'
-                      }}
-                      onError={(e) => {
-                        console.error(`Failed to load image: ${slide.image}`);
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                  );
-                })}
-              </div>
+          {/* Overlapping Images - No containers, pure overlapping */}
+          <div className="relative w-full max-w-6xl mx-auto mb-20">
+            <div className="relative h-96 lg:h-[500px] w-full">
+              {slides.map((slide, index) => (
+                <img
+                  key={slide.id}
+                  src={slide.image}
+                  alt={slide.alt}
+                  style={getImageStyle(index)}
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${slide.image}`);
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              ))}
             </div>
             
+            {/* Slide Indicators */}
+            <div className="flex justify-center space-x-3 mt-8">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'w-12 h-3 bg-orange-500 rounded-full shadow-lg' 
+                      : 'w-3 h-3 bg-gray-400 rounded-full hover:bg-orange-300'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
             {/* Navigation Arrows */}
             <button
               onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
               aria-label="Previous slide"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,29 +173,13 @@ const Hero: React.FC = () => {
             </button>
             <button
               onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
               aria-label="Next slide"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
-          </div>
-
-          {/* Slide Indicators */}
-          <div className="flex justify-center space-x-3 mb-12">
-            {slides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`transition-all duration-300 ${
-                  index === currentSlide 
-                    ? 'w-12 h-3 bg-orange-500 rounded-full shadow-lg' 
-                    : 'w-3 h-3 bg-gray-400 rounded-full hover:bg-orange-300'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
           </div>
 
           {/* Action Buttons */}
