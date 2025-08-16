@@ -138,7 +138,7 @@ const Hero: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
           {/* Header Text - Mobile responsive */}
-          <div className="text-center mb-6 md:mb-8">
+          <div className="text-center mb-2 md:mb-4">
             <div className="space-y-4 md:space-y-6">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-800 drop-shadow-lg px-4">
                 Serving Authentic &
@@ -149,7 +149,7 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Decorative line with "Since 43+ Years" */}
-            <div className="flex items-center justify-center space-x-4 md:space-x-6 mt-4 md:mt-6 px-4">
+            <div className="flex items-center justify-center space-x-4 md:space-x-6 mt-2 md:mt-3 px-4">
               <div className="h-px bg-orange-400 w-16 md:w-24"></div>
               <span className="text-orange-600 text-lg md:text-xl font-semibold italic tracking-wider drop-shadow-sm whitespace-nowrap">
                 Since 43+ Years
