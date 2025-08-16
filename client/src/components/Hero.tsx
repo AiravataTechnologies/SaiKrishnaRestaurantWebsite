@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import heroImage1 from '@assets/image_1755345512280.png';
+import heroImage2 from '@assets/image_1755346157465.png';
+import heroImage3 from '@assets/image_1755346702774.png';
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -6,28 +9,28 @@ const Hero: React.FC = () => {
   const slides = [
     {
       id: 0,
-      image: '/images/hero1.png',
-      alt: 'Traditional South Indian Vada',
-      title: 'Crispy Vada'
+      image: heroImage1,
+      alt: 'Traditional South Indian Cuisine',
+      title: 'Authentic Flavors'
     },
     {
       id: 1,
-      image: '/images/hero2.png',
-      alt: 'Authentic South Indian Thali',
-      title: 'Complete Thali'
+      image: heroImage2,
+      alt: 'South Indian Specialties',
+      title: 'Traditional Dishes'
     },
     {
       id: 2,
-      image: '/images/hero3.png',
-      alt: 'Fresh Idli and Sambar',
-      title: 'Soft Idli'
+      image: heroImage3,
+      alt: 'Fresh South Indian Food',
+      title: 'Fresh & Delicious'
     }
   ];
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
+    }, 5000); // Increased to 5 seconds for better viewing
 
     return () => clearInterval(timer);
   }, [slides.length]);
@@ -47,10 +50,8 @@ const Hero: React.FC = () => {
   return (
     <section 
       id="home" 
-      className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
+      className="relative w-full bg-gradient-to-br from-orange-50 via-white to-green-50 -mt-32 pt-32"
       style={{
-        backgroundImage: 'url(/images/Hero-bg.jpg)',
-        height: 'fit-content',
         minHeight: '100vh'
       }}
     >
@@ -81,69 +82,87 @@ const Hero: React.FC = () => {
 
           {/* Food Images with Rotating Positions */}
           <div className="relative flex justify-center items-center">
-            <div className="relative w-full max-w-5xl h-80 lg:h-96">
+            <div className="relative w-full max-w-6xl h-96 lg:h-[500px]">
               
               {/* Three images in rotating positions */}
               <div className="absolute inset-0 flex items-center justify-center">
                 
                 {/* Left Image (position 0) */}
                 <div 
-                  className="absolute transition-all duration-1000 ease-in-out"
+                  key={`left-${currentSlide}`}
+                  className="absolute transition-all duration-1500 ease-in-out transform-gpu"
                   style={{
-                    left: '10%',
+                    left: '5%',
                     top: '50%',
-                    transform: 'translateY(-50%) scale(0.8)',
+                    transform: 'translateY(-50%) scale(0.85) rotate(-5deg)',
                     zIndex: 20,
-                    width: '240px',
-                    height: '240px'
+                    width: '350px',
+                    height: '350px'
                   }}
                 >
-                  <img
-                    src={orderedSlides[0]?.image}
-                    alt={orderedSlides[0]?.alt}
-                    className="w-full h-full object-cover shadow-2xl"
-                    data-testid="img-hero-left"
-                  />
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
+                    <img
+                      src={orderedSlides[0]?.image}
+                      alt={orderedSlides[0]?.alt}
+                      className="w-full h-full object-contain bg-white transition-transform duration-700 hover:scale-105"
+                      data-testid="img-hero-left"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
                 </div>
 
                 {/* Center Image (position 1) - Always zoomed */}
                 <div 
-                  className="absolute transition-all duration-1000 ease-in-out"
+                  key={`center-${currentSlide}`}
+                  className="absolute transition-all duration-1500 ease-in-out transform-gpu"
                   style={{
                     left: '50%',
                     top: '50%',
-                    transform: 'translateX(-50%) translateY(-50%) scale(1.2)',
+                    transform: 'translateX(-50%) translateY(-50%) scale(1.1)',
                     zIndex: 30,
-                    width: '320px',
-                    height: '320px'
+                    width: '400px',
+                    height: '400px'
                   }}
                 >
-                  <img
-                    src={orderedSlides[1]?.image}
-                    alt={orderedSlides[1]?.alt}
-                    className="w-full h-full object-cover shadow-2xl"
-                    data-testid="img-hero-center"
-                  />
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-3xl">
+                    <img
+                      src={orderedSlides[1]?.image}
+                      alt={orderedSlides[1]?.alt}
+                      className="w-full h-full object-contain bg-white transition-transform duration-700 hover:scale-105"
+                      data-testid="img-hero-center"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 ring-4 ring-orange-400/30 rounded-3xl"></div>
+                    <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                      {orderedSlides[1]?.title}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Right Image (position 2) */}
                 <div 
-                  className="absolute transition-all duration-1000 ease-in-out"
+                  key={`right-${currentSlide}`}
+                  className="absolute transition-all duration-1500 ease-in-out transform-gpu"
                   style={{
-                    right: '10%',
+                    right: '5%',
                     top: '50%',
-                    transform: 'translateY(-50%) scale(0.8)',
+                    transform: 'translateY(-50%) scale(0.85) rotate(5deg)',
                     zIndex: 20,
-                    width: '240px',
-                    height: '240px'
+                    width: '350px',
+                    height: '350px'
                   }}
                 >
-                  <img
-                    src={orderedSlides[2]?.image}
-                    alt={orderedSlides[2]?.alt}
-                    className="w-full h-full object-cover shadow-2xl"
-                    data-testid="img-hero-right"
-                  />
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500">
+                    <img
+                      src={orderedSlides[2]?.image}
+                      alt={orderedSlides[2]?.alt}
+                      className="w-full h-full object-contain bg-white transition-transform duration-700 hover:scale-105"
+                      data-testid="img-hero-right"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
                 </div>
               </div>
               
