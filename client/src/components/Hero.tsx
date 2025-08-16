@@ -7,20 +7,23 @@ const Hero: React.FC = () => {
     {
       id: 0,
       image: '/images/hero1.png',
-      alt: 'Traditional South Indian Thali',
-      title: 'Authentic Thali'
+      alt: 'Traditional South Indian Vada',
+      title: 'Crispy Vada',
+      position: 'left'
     },
     {
       id: 1,
       image: '/images/hero2.png',
-      alt: 'Authentic South Indian Dishes',
-      title: 'Traditional Dishes'
+      alt: 'Authentic South Indian Thali',
+      title: 'Complete Thali',
+      position: 'center'
     },
     {
       id: 2,
       image: '/images/hero3.png',
-      alt: 'Fresh South Indian Cuisine',
-      title: 'Fresh Cuisine'
+      alt: 'Fresh Idli and Sambar',
+      title: 'Soft Idli',
+      position: 'right'
     }
   ];
 
@@ -34,129 +37,177 @@ const Hero: React.FC = () => {
 
   return (
     <section id="home" className="relative min-h-screen overflow-hidden">
-      {/* Enhanced Background with multiple layers */}
+      {/* Enhanced Background matching reference */}
       <div className="absolute inset-0">
-        {/* Primary gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-green-900 via-green-800 to-green-700"></div>
+        {/* Primary cream to green gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-orange-50 via-orange-100 to-green-700"></div>
         
-        {/* Secondary overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-green-900/30 via-transparent to-green-800/20"></div>
-        
-        {/* Decorative pattern background */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-72 h-72 bg-orange-400 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-yellow-300 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/3 right-0 w-64 h-64 bg-orange-300 rounded-full blur-2xl"></div>
+        {/* Curved design elements like in reference */}
+        <div className="absolute inset-0">
+          {/* Top curved section - cream/beige */}
+          <div className="absolute top-0 left-0 right-0 h-3/5 bg-gradient-to-b from-orange-50 to-orange-100"></div>
+          
+          {/* Curved transition */}
+          <svg 
+            className="absolute top-1/2 left-0 right-0 w-full h-64 z-10" 
+            viewBox="0 0 1200 300" 
+            preserveAspectRatio="none"
+          >
+            <path 
+              d="M0,150 Q300,50 600,100 Q900,150 1200,80 L1200,300 L0,300 Z" 
+              fill="url(#curveGradient)"
+            />
+            <defs>
+              <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#fed7aa" />
+                <stop offset="50%" stopColor="#fdba74" />
+                <stop offset="100%" stopColor="#15803d" />
+              </linearGradient>
+            </defs>
+          </svg>
+          
+          {/* Bottom green section */}
+          <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-b from-green-600 to-green-800"></div>
         </div>
         
-        {/* Geometric pattern overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="geometric" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                <circle cx="30" cy="30" r="2" fill="white"/>
-                <circle cx="0" cy="0" r="1" fill="white"/>
-                <circle cx="60" cy="60" r="1" fill="white"/>
+        {/* Decorative pattern overlay matching reference style */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute bottom-10 right-10 w-32 h-32">
+            <svg viewBox="0 0 100 100" className="w-full h-full">
+              <pattern id="traditional" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                <circle cx="10" cy="10" r="2" fill="white"/>
+                <path d="M5,5 L15,15 M15,5 L5,15" stroke="white" strokeWidth="0.5"/>
               </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#geometric)"/>
+              <rect width="100" height="100" fill="url(#traditional)"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Palm leaf decoration like in reference */}
+        <div className="absolute top-20 left-0 z-20 opacity-80">
+          <svg width="200" height="150" viewBox="0 0 200 150" className="text-green-600">
+            <path d="M10,140 Q50,20 100,50 Q150,80 190,10" stroke="currentColor" strokeWidth="3" fill="none"/>
+            <path d="M20,130 Q40,60 70,80 Q100,100 130,40" stroke="currentColor" strokeWidth="2" fill="none"/>
+            <path d="M30,120 Q50,80 80,90 Q110,100 140,60" stroke="currentColor" strokeWidth="2" fill="none"/>
           </svg>
         </div>
       </div>
 
-      {/* Content with enhanced layout */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center py-20">
+      {/* Content with reference-style layout */}
+      <div className="relative z-30 min-h-screen flex flex-col items-center justify-center py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
-          {/* Enhanced Top Content */}
-          <div className="text-center text-white mb-20">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-                  Serving Authentic &
-                </h1>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">
-                    Creative South Indian Cuisine
-                  </span>
-                </h2>
-              </div>
-              
-              <div className="flex items-center justify-center space-x-6 mt-8">
-                <div className="h-px bg-gradient-to-r from-transparent via-orange-400 to-transparent w-24"></div>
-                <span className="text-orange-300 text-xl font-semibold tracking-wider italic bg-green-800/30 px-6 py-2 rounded-full border border-orange-400/30">
-                  Since 43+ Years
-                </span>
-                <div className="h-px bg-gradient-to-r from-transparent via-orange-400 to-transparent w-24"></div>
-              </div>
+          {/* Header Text matching reference */}
+          <div className="text-center mb-16">
+            <div className="space-y-6">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-gray-800">
+                Serving Authentic &
+              </h1>
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-700">
+                Creative South Indian Cuisine
+              </h2>
+            </div>
+            
+            {/* Decorative line with "Since 43+ Years" */}
+            <div className="flex items-center justify-center space-x-6 mt-8">
+              <div className="h-px bg-orange-400 w-24"></div>
+              <span className="text-orange-600 text-xl font-semibold italic tracking-wider">
+                Since 43+ Years
+              </span>
+              <div className="h-px bg-orange-400 w-24"></div>
             </div>
           </div>
 
-          {/* Enhanced Centered Image Carousel with sliding center focus */}
-          <div className="flex justify-center items-center mb-20">
-            <div className="relative w-full max-w-6xl h-96 lg:h-[400px]">
-              {/* Main container for the sliding effect */}
-              <div className="relative w-full h-full overflow-hidden">
+          {/* Food Images in Curved Layout like Reference */}
+          <div className="relative flex justify-center items-center">
+            <div className="relative w-full max-w-5xl h-80 lg:h-96">
+              
+              {/* Curved arrangement of food images */}
+              <div className="absolute inset-0 flex items-end justify-center">
+                
+                {/* Left Image - Vada/Round items */}
                 <div 
-                  className="flex transition-transform duration-1000 ease-in-out h-full"
-                  style={{
-                    transform: `translateX(calc(-${currentSlide * 33.333}% + ${currentSlide * 2}rem))`,
-                    width: '300%'
-                  }}
+                  className={`absolute left-0 bottom-0 transition-all duration-1000 ease-in-out ${
+                    currentSlide === 0 
+                      ? 'w-72 h-72 z-30 scale-110 -rotate-6' 
+                      : 'w-56 h-56 z-20 scale-90 opacity-75'
+                  }`}
+                  style={{ transform: `translateX(10%) translateY(-20%) ${currentSlide === 0 ? 'scale(1.1) rotate(-6deg)' : 'scale(0.9)'}` }}
                 >
-                  {slides.map((slide, index) => (
-                    <div
-                      key={slide.id}
-                      className="relative flex-1 px-4"
-                    >
-                      <div
-                        className={`relative h-full transition-all duration-1000 ease-in-out ${
-                          index === currentSlide 
-                            ? 'scale-110 z-30' 
-                            : 'scale-90 z-20'
-                        }`}
-                      >
-                        <img
-                          src={slide.image}
-                          alt={slide.alt}
-                          className="w-full h-full object-cover rounded-3xl shadow-2xl"
-                          data-testid={`img-hero-${index + 1}`}
-                        />
-                        
-                        {/* Enhanced overlay for active image */}
-                        {index === currentSlide && (
-                          <>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-3xl"></div>
-                            <div className="absolute inset-0 ring-4 ring-orange-400/50 rounded-3xl"></div>
-                            <div className="absolute bottom-4 left-4 right-4">
-                              <div className="bg-black/50 backdrop-blur-sm rounded-xl p-4">
-                                <h3 className="text-white font-bold text-lg">{slide.title}</h3>
-                                <p className="text-orange-300 text-sm">Authentic South Indian flavors</p>
-                              </div>
-                            </div>
-                          </>
-                        )}
-                        
-                        {/* Subtle overlay for non-active images */}
-                        {index !== currentSlide && (
-                          <div className="absolute inset-0 bg-black/20 rounded-3xl"></div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
+                  <img
+                    src={slides[0].image}
+                    alt={slides[0].alt}
+                    className="w-full h-full object-cover rounded-full shadow-2xl"
+                    data-testid="img-hero-1"
+                  />
+                  {currentSlide === 0 && (
+                    <div className="absolute inset-0 ring-4 ring-orange-400 rounded-full animate-pulse"></div>
+                  )}
+                </div>
+
+                {/* Center Image - Main Thali */}
+                <div 
+                  className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 transition-all duration-1000 ease-in-out ${
+                    currentSlide === 1 
+                      ? 'w-80 h-64 z-30 scale-115' 
+                      : 'w-64 h-48 z-20 scale-90 opacity-75'
+                  }`}
+                  style={{ transform: `translateX(-50%) translateY(-10%) ${currentSlide === 1 ? 'scale(1.15)' : 'scale(0.9)'}` }}
+                >
+                  <img
+                    src={slides[1].image}
+                    alt={slides[1].alt}
+                    className="w-full h-full object-cover rounded-2xl shadow-2xl"
+                    data-testid="img-hero-2"
+                  />
+                  {currentSlide === 1 && (
+                    <div className="absolute inset-0 ring-4 ring-orange-400 rounded-2xl animate-pulse"></div>
+                  )}
+                </div>
+
+                {/* Right Image - Idli/Round items */}
+                <div 
+                  className={`absolute right-0 bottom-0 transition-all duration-1000 ease-in-out ${
+                    currentSlide === 2 
+                      ? 'w-72 h-72 z-30 scale-110 rotate-6' 
+                      : 'w-56 h-56 z-20 scale-90 opacity-75'
+                  }`}
+                  style={{ transform: `translateX(-10%) translateY(-20%) ${currentSlide === 2 ? 'scale(1.1) rotate(6deg)' : 'scale(0.9)'}` }}
+                >
+                  <img
+                    src={slides[2].image}
+                    alt={slides[2].alt}
+                    className="w-full h-full object-cover rounded-full shadow-2xl"
+                    data-testid="img-hero-3"
+                  />
+                  {currentSlide === 2 && (
+                    <div className="absolute inset-0 ring-4 ring-orange-400 rounded-full animate-pulse"></div>
+                  )}
+                </div>
+              </div>
+
+              {/* Active image title overlay */}
+              <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-40">
+                <div className="bg-white/90 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg border border-orange-200">
+                  <h3 className="text-green-800 font-bold text-lg text-center">
+                    {slides[currentSlide].title}
+                  </h3>
+                  <p className="text-orange-600 text-sm text-center">
+                    Authentic South Indian Delicacy
+                  </p>
                 </div>
               </div>
               
-              {/* Enhanced Slide Indicators */}
-              <div className="flex justify-center mt-8 space-x-4">
+              {/* Slide Indicators */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3">
                 {slides.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentSlide(index)}
                     className={`transition-all duration-300 ${
                       index === currentSlide 
-                        ? 'w-12 h-3 bg-orange-400 rounded-full' 
-                        : 'w-3 h-3 bg-white/50 rounded-full hover:bg-white/70'
+                        ? 'w-8 h-3 bg-orange-500 rounded-full' 
+                        : 'w-3 h-3 bg-white/60 rounded-full hover:bg-white/80'
                     }`}
                     data-testid={`indicator-${index}`}
                   />
@@ -165,10 +216,10 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Enhanced Action Buttons */}
-          <div className="flex justify-center space-x-6">
+          {/* Action Buttons */}
+          <div className="flex justify-center space-x-6 mt-20">
             <button 
-              className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl"
+              className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
               data-testid="button-view-menu"
             >
               <span className="flex items-center space-x-2">
@@ -179,7 +230,7 @@ const Hero: React.FC = () => {
               </span>
             </button>
             <button 
-              className="group border-2 border-white text-white hover:bg-white hover:text-green-800 px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              className="group border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
               data-testid="button-order-online"
             >
               <span className="flex items-center space-x-2">
@@ -193,19 +244,11 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* Enhanced Bottom Wave with better styling */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-20 fill-white">
-          <path d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,106.7C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+      {/* Bottom Wave */}
+      <div className="absolute bottom-0 left-0 right-0 z-20">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 fill-white">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
         </svg>
-      </div>
-
-      {/* Floating decorative elements */}
-      <div className="absolute top-1/4 left-10 animate-pulse opacity-20">
-        <div className="w-20 h-20 border-2 border-orange-400 rounded-full"></div>
-      </div>
-      <div className="absolute bottom-1/3 right-10 animate-pulse opacity-20 animation-delay-2000">
-        <div className="w-16 h-16 border-2 border-yellow-400 rounded-full"></div>
       </div>
     </section>
   );
