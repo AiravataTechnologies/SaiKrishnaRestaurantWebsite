@@ -48,7 +48,7 @@ const Hero: React.FC = () => {
       objectPosition: 'center' as const,
     };
 
-    // Proper horizontal line positioning with overlapping
+    // Proper horizontal line positioning with correct layering
     switch (position) {
       case 0: // Left position - properly positioned on the left
         return {
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
           left: 'calc(50% - 160px)', // Further left to create proper line
           top: '50%',
           transform: 'translateY(-50%) scale(0.85)',
-          zIndex: 20,
+          zIndex: 25, // Higher z-index to stay above center during transition
           opacity: 0.9,
           width: 'clamp(220px, 28vw, 320px)',
           height: 'clamp(220px, 28vw, 320px)',
@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
           left: '50%',
           top: '50%',
           transform: 'translateX(-50%) translateY(-50%) scale(1)',
-          zIndex: 30,
+          zIndex: 30, // Highest z-index for center
           opacity: 1,
           width: 'clamp(250px, 32vw, 380px)',
           height: 'clamp(250px, 32vw, 380px)',
@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
           left: 'calc(50% + 160px)', // Further right to create proper line
           top: '50%',
           transform: 'translateY(-50%) scale(0.85)',
-          zIndex: 20,
+          zIndex: 25, // Higher z-index to stay above center during transition
           opacity: 0.9,
           width: 'clamp(220px, 28vw, 320px)',
           height: 'clamp(220px, 28vw, 320px)',
@@ -88,7 +88,7 @@ const Hero: React.FC = () => {
           ...baseStyles,
           opacity: 0,
           transform: 'scale(0.5)',
-          zIndex: 0,
+          zIndex: 10, // Lower z-index for hidden images
           width: '0px',
           height: '0px',
         };
