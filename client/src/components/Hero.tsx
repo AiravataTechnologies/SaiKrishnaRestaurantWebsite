@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 4000);
+    }, 5000); // Longer interval for smoother experience
 
     return () => clearInterval(timer);
   }, [slides.length]);
@@ -40,7 +40,7 @@ const Hero: React.FC = () => {
     const baseStyles = {
       position: 'absolute' as const,
       top: '50%',
-      transition: 'all 1.5s ease-in-out',
+      transition: 'all 2s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
       objectFit: 'contain' as const,
       objectPosition: 'center' as const,
     };
