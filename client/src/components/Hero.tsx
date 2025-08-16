@@ -79,68 +79,20 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden">
-      {/* Enhanced Background matching reference */}
-      <div className="absolute inset-0">
-        {/* Primary cream to green gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-orange-50 via-orange-100 to-green-700"></div>
-        
-        {/* Curved design elements like in reference */}
-        <div className="absolute inset-0">
-          {/* Top curved section - cream/beige */}
-          <div className="absolute top-0 left-0 right-0 h-3/5 bg-gradient-to-b from-orange-50 to-orange-100"></div>
-          
-          {/* Curved transition */}
-          <svg 
-            className="absolute top-1/2 left-0 right-0 w-full h-64 z-10" 
-            viewBox="0 0 1200 300" 
-            preserveAspectRatio="none"
-          >
-            <path 
-              d="M0,150 Q300,50 600,100 Q900,150 1200,80 L1200,300 L0,300 Z" 
-              fill="url(#curveGradient)"
-            />
-            <defs>
-              <linearGradient id="curveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#fed7aa" />
-                <stop offset="50%" stopColor="#fdba74" />
-                <stop offset="100%" stopColor="#15803d" />
-              </linearGradient>
-            </defs>
-          </svg>
-          
-          {/* Bottom green section */}
-          <div className="absolute bottom-0 left-0 right-0 h-2/5 bg-gradient-to-b from-green-600 to-green-800"></div>
-        </div>
-        
-        {/* Decorative pattern overlay matching reference style */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute bottom-10 right-10 w-32 h-32">
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              <pattern id="traditional" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <circle cx="10" cy="10" r="2" fill="white"/>
-                <path d="M5,5 L15,15 M15,5 L5,15" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-              <rect width="100" height="100" fill="url(#traditional)"/>
-            </svg>
-          </div>
-        </div>
-
-        {/* Palm leaf decoration like in reference */}
-        <div className="absolute top-20 left-0 z-20 opacity-80">
-          <svg width="200" height="150" viewBox="0 0 200 150" className="text-green-600">
-            <path d="M10,140 Q50,20 100,50 Q150,80 190,10" stroke="currentColor" strokeWidth="3" fill="none"/>
-            <path d="M20,130 Q40,60 70,80 Q100,100 130,40" stroke="currentColor" strokeWidth="2" fill="none"/>
-            <path d="M30,120 Q50,80 80,90 Q110,100 140,60" stroke="currentColor" strokeWidth="2" fill="none"/>
-          </svg>
-        </div>
-      </div>
-
-      {/* Content with reference-style layout */}
-      <div className="relative z-30 min-h-screen flex flex-col items-center justify-center py-20">
+    <section 
+      id="home" 
+      className="relative w-full h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: 'url(/images/Hero-bg.jpg)',
+        height: 'fit-content',
+        minHeight: '100vh'
+      }}
+    >
+      {/* Content overlay */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
-          {/* Header Text matching reference */}
+          {/* Header Text */}
           <div className="text-center mb-16">
             <div className="space-y-6">
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-gray-800">
@@ -188,18 +140,9 @@ const Hero: React.FC = () => {
                       <img
                         src={slide.image}
                         alt={slide.alt}
-                        className={`w-full h-full object-cover shadow-2xl ${
-                          index === 1 ? 'rounded-2xl' : 'rounded-full'
-                        }`}
+                        className="w-full h-full object-cover shadow-2xl"
                         data-testid={`img-hero-${index + 1}`}
                       />
-                      
-                      {/* Enhanced ring highlight for active image */}
-                      {isActive && (
-                        <div className={`absolute inset-0 ring-4 ring-orange-400 ${
-                          index === 1 ? 'rounded-2xl' : 'rounded-full'
-                        } animate-pulse`}></div>
-                      )}
                     </div>
                   );
                 })}
@@ -261,13 +204,6 @@ const Hero: React.FC = () => {
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Bottom Wave */}
-      <div className="absolute bottom-0 left-0 right-0 z-20">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="w-full h-16 fill-white">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
-        </svg>
       </div>
     </section>
   );
