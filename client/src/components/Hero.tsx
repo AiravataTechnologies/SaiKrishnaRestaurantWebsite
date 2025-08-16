@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Show all 5 images at once with rotating focus
+  // Show all 5 images at once with smooth sliding transitions
   const getImagePosition = (slideIndex: number) => {
     const relativePosition = (slideIndex - currentSlide + slides.length) % slides.length;
     
@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
       objectPosition: 'center' as const,
     };
 
-    // Position all 5 images across the screen
+    // Position all 5 images across the screen using consistent left positioning
     switch (relativePosition) {
       case 0: // Far left
         return {
@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
       case 1: // Left
         return {
           ...baseStyles,
-          left: '20%',
+          left: '22.5%',
           transform: 'translateY(-50%) scale(0.85)',
           zIndex: 20,
           opacity: 0.85,
@@ -88,21 +88,21 @@ const Hero: React.FC = () => {
           width: 'clamp(220px, 28vw, 350px)',
           height: 'clamp(220px, 28vw, 350px)',
         };
-      case 3: // Right
+      case 3: // Right - using left positioning instead of right
         return {
           ...baseStyles,
-          right: '20%',
-          transform: 'translateY(-50%) scale(0.85)',
+          left: '77.5%',
+          transform: 'translateX(-100%) translateY(-50%) scale(0.85)',
           zIndex: 20,
           opacity: 0.85,
           width: 'clamp(180px, 22vw, 280px)',
           height: 'clamp(180px, 22vw, 280px)',
         };
-      case 4: // Far right
+      case 4: // Far right - using left positioning instead of right
         return {
           ...baseStyles,
-          right: '5%',
-          transform: 'translateY(-50%) scale(0.7)',
+          left: '95%',
+          transform: 'translateX(-100%) translateY(-50%) scale(0.7)',
           zIndex: 15,
           opacity: 0.7,
           width: 'clamp(150px, 18vw, 250px)',
