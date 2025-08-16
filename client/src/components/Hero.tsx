@@ -48,20 +48,20 @@ const Hero: React.FC = () => {
       objectPosition: 'center' as const,
     };
 
-    // Responsive sizing and positioning
+    // True overlapping positioning - much closer together
     switch (position) {
-      case 0: // Left position
+      case 0: // Left position - overlapping center
         return {
           ...baseStyles,
-          left: 'calc(50% - 200px)', // Fixed distance from center
+          left: 'calc(50% - 80px)', // Much closer to center
           top: '50%',
-          transform: 'translateY(-50%) scale(0.75)',
-          zIndex: 10,
-          opacity: 0.85,
-          width: 'clamp(200px, 25vw, 300px)',
-          height: 'clamp(200px, 25vw, 300px)',
+          transform: 'translateY(-50%) scale(0.85)',
+          zIndex: 20,
+          opacity: 0.9,
+          width: 'clamp(220px, 28vw, 320px)',
+          height: 'clamp(220px, 28vw, 320px)',
         };
-      case 1: // Center position (main)
+      case 1: // Center position (main) - front and center
         return {
           ...baseStyles,
           left: '50%',
@@ -69,19 +69,19 @@ const Hero: React.FC = () => {
           transform: 'translateX(-50%) translateY(-50%) scale(1)',
           zIndex: 30,
           opacity: 1,
-          width: 'clamp(250px, 30vw, 350px)',
-          height: 'clamp(250px, 30vw, 350px)',
+          width: 'clamp(250px, 32vw, 380px)',
+          height: 'clamp(250px, 32vw, 380px)',
         };
-      case 2: // Right position
+      case 2: // Right position - overlapping center
         return {
           ...baseStyles,
-          left: 'calc(50% + 200px)', // Fixed distance from center
+          left: 'calc(50% + 80px)', // Much closer to center
           top: '50%',
-          transform: 'translateY(-50%) scale(0.75)',
-          zIndex: 10,
-          opacity: 0.85,
-          width: 'clamp(200px, 25vw, 300px)',
-          height: 'clamp(200px, 25vw, 300px)',
+          transform: 'translateY(-50%) scale(0.85)',
+          zIndex: 20,
+          opacity: 0.9,
+          width: 'clamp(220px, 28vw, 320px)',
+          height: 'clamp(220px, 28vw, 320px)',
         };
       default:
         return {
