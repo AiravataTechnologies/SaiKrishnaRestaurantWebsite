@@ -51,7 +51,7 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-green-800/90 to-green-700/90 text-white py-3 px-4 shadow-sm">
+      <div className="bg-gradient-to-r from-green-800 to-green-700 text-white py-3 px-4 shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-sm">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2 hover:text-orange-200 transition-colors">
@@ -81,8 +81,8 @@ const Header: React.FC = () => {
       <header
         className={`sticky top-0 z-50 transition-all duration-500 ease-in-out ${
           isScrolled
-            ? "bg-white/80 backdrop-blur-md shadow-lg border-b border-gray-100/50"
-            : "bg-white/60 backdrop-blur-sm"
+            ? "bg-white/95 backdrop-blur-md shadow-xl border-b border-gray-100"
+            : "bg-white shadow-md"
         } ${
           isHeaderVisible
             ? "transform translate-y-0 opacity-100"
@@ -90,18 +90,18 @@ const Header: React.FC = () => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20 py-2">
-            {/* Logo Section */}
-            <div className="flex items-center -ml-2">
-              <div className="relative">
+          <div className="flex justify-between items-center py-2">
+            {/* Full Width Logo Section */}
+            <div className="flex-1 flex items-center justify-start">
+              <div className="relative group w-full max-w-md">
                 <img
                   src="/images/logo.png"
                   alt="Sai Krishna Restaurant Logo"
                   className={`object-contain transition-all duration-300 ${
-                    isScrolled ? "h-14 w-auto" : "h-16 w-auto"
-                  }`}
+                    isScrolled ? "h-16" : "h-20"
+                  } w-full group-hover:scale-105`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-orange-500/10 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-orange-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             </div>
 
@@ -143,7 +143,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden bg-white/80 backdrop-blur-md border-t border-gray-100/50 rounded-b-xl shadow-lg">
+            <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 rounded-b-xl shadow-lg">
               <div className="py-4 space-y-1">
                 {[
                   { id: "home", label: "Home" },
