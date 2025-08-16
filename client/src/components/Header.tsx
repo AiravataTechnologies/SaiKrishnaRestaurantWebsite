@@ -14,8 +14,12 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Header animation on mount
+    setIsVisible(true);
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
@@ -87,12 +91,18 @@ const Header: React.FC = () => {
           isHeaderVisible
             ? "transform translate-y-0 opacity-100"
             : "transform -translate-y-full opacity-0"
+        } ${
+          isVisible 
+            ? "animate-in slide-in-from-top-5 duration-700" 
+            : ""
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 py-2">
             {/* Logo Section */}
-            <div className="flex items-center -ml-2">
+            <div className={`flex items-center -ml-2 transition-all duration-700 delay-200 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
+            }`}>
               <div className="relative">
                 <img
                   src="/images/logo.png"
@@ -106,7 +116,9 @@ const Header: React.FC = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-1">
+            <nav className={`hidden md:flex items-center space-x-1 transition-all duration-700 delay-400 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}>
               {[
                 { id: "home", label: "Home" },
                 { id: "about", label: "About Us" },
@@ -130,7 +142,9 @@ const Header: React.FC = () => {
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden p-3 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+              className={`md:hidden p-3 rounded-lg hover:bg-gray-100 transition-all duration-700 delay-600 ${
+                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+              }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? (

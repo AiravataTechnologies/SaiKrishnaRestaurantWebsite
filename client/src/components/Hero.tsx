@@ -1,7 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   
   const slides = [
     {
@@ -123,6 +143,7 @@ const Hero: React.FC = () => {
 
   return (
     <section 
+      ref={sectionRef}
       id="home" 
       className="relative w-full bg-cover bg-center bg-no-repeat -mt-20 pt-20"
       style={{
@@ -138,7 +159,9 @@ const Hero: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
           {/* Header Text - Mobile responsive */}
-          <div className="text-center mb-2 md:mb-4">
+          <div className={`text-center mb-2 md:mb-4 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             <div className="space-y-4 md:space-y-6">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-800 drop-shadow-lg px-4">
                 Serving Authentic &
@@ -149,7 +172,9 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Decorative line with "Since 43+ Years" */}
-            <div className="flex items-center justify-center space-x-4 md:space-x-6 mt-2 md:mt-3 px-4">
+            <div className={`flex items-center justify-center space-x-4 md:space-x-6 mt-2 md:mt-3 px-4 transition-all duration-1000 delay-300 ${
+              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}>
               <div className="h-px bg-orange-400 w-16 md:w-24"></div>
               <span className="text-orange-600 text-lg md:text-xl font-semibold italic tracking-wider drop-shadow-sm whitespace-nowrap">
                 Since 43+ Years
@@ -159,7 +184,9 @@ const Hero: React.FC = () => {
           </div>
 
           {/* All 5 Images Visible - Rotating Focus */}
-          <div className="relative w-full max-w-7xl mx-auto mb-8 md:mb-12">
+          <div className={`relative w-full max-w-7xl mx-auto mb-8 md:mb-12 transition-all duration-1000 delay-600 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
             <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] w-full overflow-hidden">
               {slides.map((slide, index) => (
                 <img

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Calendar, User, ArrowRight, X, Clock } from "lucide-react";
 import blog1Image from "@assets/blog1.jpeg";
 import blog2Image from "@assets/blog2.jpeg";
@@ -7,6 +7,26 @@ import blog4Image from "@assets/blog4.jpeg";
 
 const Blog: React.FC = () => {
   const [selectedBlog, setSelectedBlog] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const blogPosts = [
     {
@@ -303,20 +323,22 @@ const Blog: React.FC = () => {
   ];
 
   return (
-    <section id="blog" className="py-20 bg-white">
+    <section ref={sectionRef} id="blog" className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           {/* Decorative ornament */}
-          <div className="flex justify-center mb-6">
-            <div className="text-orange-500 text-3xl">✦ ❋ ✦</div>
+          <div className="flex justify-center mb-4 sm:mb-6">
+            <div className="text-orange-500 text-2xl sm:text-3xl">✦ ❋ ✦</div>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6 px-4">
             Blog
           </h2>
-          <div className="flex justify-center mb-6">
-            <div className="text-orange-500 text-3xl">❋ ✦ ❋</div>
+          <div className="flex justify-center mb-4 sm:mb-6">
+            <div className="text-orange-500 text-2xl sm:text-3xl">❋ ✦ ❋</div>
           </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
             Read our latest stories, recipes, and insights about South Indian
             cuisine and culture
           </p>
@@ -326,7 +348,10 @@ const Blog: React.FC = () => {
           {blogPosts.map((post, index) => (
             <article
               key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-1 md:hover:-translate-y-2"
+              className={`bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group hover:-translate-y-1 md:hover:-translate-y-2 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${300 + index * 200}ms` }}
             >
               <div className="relative">
                 <img

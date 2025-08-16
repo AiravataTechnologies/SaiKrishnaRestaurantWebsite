@@ -1,24 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ExternalLink, Star, Clock, Smartphone } from 'lucide-react';
 
 const OnlineOrdering: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   return (
-    <section className="py-20 bg-green-50">
+    <section ref={sectionRef} className="py-12 sm:py-16 lg:py-20 bg-green-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-bold text-green-800 mb-6">
+        <div className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-green-800 mb-4 sm:mb-6 px-4">
             Order <span className="text-orange-500">Online</span>
           </h2>
-          <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <div className="w-24 h-1 bg-orange-500 mx-auto mb-4 sm:mb-6"></div>
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
             Enjoy our authentic South Indian cuisine from the comfort of your home. 
             Order online through your favorite food delivery platforms.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
           {/* Swiggy Card */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-orange-100">
+          <div className={`bg-white rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-orange-100 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+          }`}
+          style={{ transitionDelay: '300ms' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
@@ -56,7 +81,10 @@ const OnlineOrdering: React.FC = () => {
           </div>
 
           {/* Zomato Card */}
-          <div className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-orange-100">
+          <div className={`bg-white rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-orange-100 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          }`}
+          style={{ transitionDelay: '600ms' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
