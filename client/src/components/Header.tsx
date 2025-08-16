@@ -58,12 +58,14 @@ const Header: React.FC = () => {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
               <div className="flex items-center space-x-3">
-                <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
-                  <div className="text-white font-bold text-lg">श्री</div>
-                </div>
+                <img 
+                  src="/images/logo.png" 
+                  alt="Sri Krishna Restaurant Logo" 
+                  className="w-12 h-12 object-contain"
+                />
                 <div>
                   <div className="text-2xl font-bold">
-                    <span className="text-red-600">SRI</span>
+                    <span className="text-green-700">SRI</span>
                     <span className="text-orange-500 ml-1">KRISHNA</span>
                   </div>
                   <div className="text-xs text-gray-600 tracking-wider">R E S T A U R A N T</div>
@@ -75,46 +77,52 @@ const Header: React.FC = () => {
             <nav className="hidden md:flex items-center space-x-8">
               <button 
                 onClick={() => scrollToSection('home')}
-                className="text-gray-700 hover:text-orange-500 transition-colors font-medium flex items-center space-x-1"
+                className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                data-testid="nav-home"
               >
-                <span>🏠</span>
-                <span>Home</span>
+                Home
               </button>
               <button 
-                onClick={() => scrollToSection('speciality')}
-                className="text-orange-500 hover:text-orange-600 transition-colors font-medium"
+                onClick={() => scrollToSection('about')}
+                className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                data-testid="nav-about"
               >
-                Our Speciality
-              </button>
-              <button 
-                onClick={() => scrollToSection('legacy')}
-                className="text-orange-500 hover:text-orange-600 transition-colors font-medium"
-              >
-                Our Legacy
+                About Us
               </button>
               <button 
                 onClick={() => scrollToSection('menu')}
-                className="text-orange-500 hover:text-orange-600 transition-colors font-medium"
+                className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                data-testid="nav-menu"
               >
-                Best Dishes
+                Menu
               </button>
               <button 
                 onClick={() => scrollToSection('gallery')}
-                className="text-orange-500 hover:text-orange-600 transition-colors font-medium"
+                className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                data-testid="nav-gallery"
               >
                 Gallery
               </button>
               <button 
-                onClick={() => scrollToSection('reviews')}
-                className="text-orange-500 hover:text-orange-600 transition-colors font-medium"
+                onClick={() => scrollToSection('videos')}
+                className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                data-testid="nav-videos"
               >
-                Reviews
+                Videos
+              </button>
+              <button 
+                onClick={() => scrollToSection('blog')}
+                className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                data-testid="nav-blog"
+              >
+                Blog
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-orange-500 hover:text-orange-600 transition-colors font-medium"
+                className="text-gray-700 hover:text-green-700 transition-colors font-medium"
+                data-testid="nav-contact"
               >
-                Contact
+                Contact Us
               </button>
             </nav>
 
@@ -133,45 +141,52 @@ const Header: React.FC = () => {
               <div className="py-4 space-y-3">
                 <button 
                   onClick={() => scrollToSection('home')}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50"
+                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-green-50"
+                  data-testid="mobile-nav-home"
                 >
                   Home
                 </button>
                 <button 
-                  onClick={() => scrollToSection('speciality')}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50"
+                  onClick={() => scrollToSection('about')}
+                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-green-50"
+                  data-testid="mobile-nav-about"
                 >
-                  Our Speciality
-                </button>
-                <button 
-                  onClick={() => scrollToSection('legacy')}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50"
-                >
-                  Our Legacy
+                  About Us
                 </button>
                 <button 
                   onClick={() => scrollToSection('menu')}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50"
+                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-green-50"
+                  data-testid="mobile-nav-menu"
                 >
-                  Best Dishes
+                  Menu
                 </button>
                 <button 
                   onClick={() => scrollToSection('gallery')}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50"
+                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-green-50"
+                  data-testid="mobile-nav-gallery"
                 >
                   Gallery
                 </button>
                 <button 
-                  onClick={() => scrollToSection('reviews')}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50"
+                  onClick={() => scrollToSection('videos')}
+                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-green-50"
+                  data-testid="mobile-nav-videos"
                 >
-                  Reviews
+                  Videos
+                </button>
+                <button 
+                  onClick={() => scrollToSection('blog')}
+                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-green-50"
+                  data-testid="mobile-nav-blog"
+                >
+                  Blog
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50"
+                  className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-green-50"
+                  data-testid="mobile-nav-contact"
                 >
-                  Contact
+                  Contact Us
                 </button>
               </div>
             </div>
