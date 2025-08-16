@@ -41,78 +41,41 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent"></div>
       </div>
 
-      <div className="relative z-10 min-h-screen flex items-center">
+      {/* Content with centered layout */}
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Left Content */}
-            <div className="text-white space-y-8">
-              <div className="space-y-6">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                  Authentic <span className="text-orange-400">South Indian</span> Cuisine
-                </h1>
-                <p className="text-xl sm:text-2xl text-green-100 leading-relaxed">
-                  Experience the true flavors of South India at Sai Krishna Restaurant
-                </p>
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <div className="h-px bg-orange-400 w-16"></div>
-                <span className="text-orange-400 text-lg font-semibold tracking-wide">Since 43+ Years</span>
-                <div className="h-px bg-orange-400 w-16"></div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                  <span className="text-green-100">Traditional recipes passed down through generations</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                  <span className="text-green-100">Fresh ingredients sourced daily</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                  <span className="text-green-100">Authentic flavors in every dish</span>
-                </div>
-              </div>
-              
-              <div className="flex space-x-4 pt-4">
-                <button 
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
-                  data-testid="button-view-menu"
-                >
-                  View Menu
-                </button>
-                <button 
-                  className="border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 rounded-lg font-semibold transition-all duration-300"
-                  data-testid="button-order-online"
-                >
-                  Order Online
-                </button>
-              </div>
+          
+          {/* Top Content - Text */}
+          <div className="text-center text-white mb-16">
+            <div className="space-y-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                Serving Authentic &
+              </h1>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-orange-400">
+                Creative South Indian Cuisine
+              </h2>
             </div>
+            
+            <div className="flex items-center justify-center space-x-4 mt-8">
+              <div className="h-px bg-orange-400 w-16"></div>
+              <span className="text-orange-400 text-lg font-semibold tracking-wide italic">Since 43+ Years</span>
+              <div className="h-px bg-orange-400 w-16"></div>
+            </div>
+          </div>
 
-            {/* Right - Image Carousel */}
-            <div className="relative">
-              <div className="relative w-full h-96 lg:h-[500px]">
+          {/* Centered Image Carousel - Similar to reference */}
+          <div className="flex justify-center items-center">
+            <div className="relative w-full max-w-4xl h-80 lg:h-96">
+              {/* Container for all three images in horizontal layout */}
+              <div className="flex justify-center items-center h-full space-x-8">
                 {slides.map((slide, index) => (
                   <div
                     key={slide.id}
-                    className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                    className={`relative transition-all duration-1000 ease-in-out ${
                       index === currentSlide 
-                        ? 'opacity-100 scale-110 z-30' 
-                        : index === (currentSlide + 1) % slides.length
-                        ? 'opacity-70 scale-95 z-20 translate-x-4'
-                        : 'opacity-40 scale-90 z-10 translate-x-8'
+                        ? 'w-80 h-64 lg:w-96 lg:h-72 z-30 scale-110' 
+                        : 'w-64 h-48 lg:w-72 lg:h-56 z-20 scale-95 opacity-70'
                     }`}
-                    style={{
-                      transform: `
-                        ${index === currentSlide ? 'translateX(0) scale(1.1)' : 
-                          index === (currentSlide + 1) % slides.length ? 'translateX(20px) scale(0.95)' :
-                          'translateX(40px) scale(0.9)'}
-                      `
-                    }}
                   >
                     <img
                       src={slide.image}
@@ -120,6 +83,7 @@ const Hero: React.FC = () => {
                       className="w-full h-full object-cover rounded-2xl shadow-2xl"
                       data-testid={`img-hero-${index + 1}`}
                     />
+                    {/* Overlay for active image */}
                     {index === currentSlide && (
                       <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
                     )}
@@ -141,6 +105,22 @@ const Hero: React.FC = () => {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Bottom Action Buttons */}
+          <div className="flex justify-center space-x-4 mt-16">
+            <button 
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg"
+              data-testid="button-view-menu"
+            >
+              View Menu
+            </button>
+            <button 
+              className="border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+              data-testid="button-order-online"
+            >
+              Order Online
+            </button>
           </div>
         </div>
       </div>

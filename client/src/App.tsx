@@ -10,6 +10,7 @@ import OnlineOrdering from './components/OnlineOrdering';
 import Reviews from './components/Reviews';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Reviews />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }
