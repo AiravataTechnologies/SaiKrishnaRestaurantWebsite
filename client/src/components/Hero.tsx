@@ -32,66 +32,63 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Calculate positions for overlapping images with responsive positioning
-  const getImageStyle = (index: number) => {
-    const currentIndex = currentSlide;
-    const totalImages = slides.length;
+  // Simple left-center-right positioning
+  const getImagePosition = (slideIndex: number) => {
+    // Calculate which position each slide should be in
+    const relativePosition = (slideIndex - currentSlide + slides.length) % slides.length;
     
-    // Calculate the position relative to current slide
-    let position = (index - currentIndex + totalImages) % totalImages;
-    
-    // Responsive base styles
     const baseStyles = {
       position: 'absolute' as const,
-      transition: 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+      top: '50%',
+      transition: 'all 1.5s ease-in-out',
       objectFit: 'contain' as const,
       objectPosition: 'center' as const,
     };
 
-    // Proper horizontal line positioning with correct layering
-    switch (position) {
-      case 0: // Left position - properly positioned on the left
-        return {
-          ...baseStyles,
-          left: 'calc(50% - 160px)', // Further left to create proper line
-          top: '50%',
-          transform: 'translateY(-50%) scale(0.85)',
-          zIndex: 25, // Higher z-index to stay above center during transition
-          opacity: 0.9,
-          width: 'clamp(220px, 28vw, 320px)',
-          height: 'clamp(220px, 28vw, 320px)',
-        };
-      case 1: // Center position (main) - front and center
-        return {
-          ...baseStyles,
-          left: '50%',
-          top: '50%',
-          transform: 'translateX(-50%) translateY(-50%) scale(1)',
-          zIndex: 30, // Highest z-index for center
-          opacity: 1,
-          width: 'clamp(250px, 32vw, 380px)',
-          height: 'clamp(250px, 32vw, 380px)',
-        };
-      case 2: // Right position - properly positioned on the right
-        return {
-          ...baseStyles,
-          left: 'calc(50% + 160px)', // Further right to create proper line
-          top: '50%',
-          transform: 'translateY(-50%) scale(0.85)',
-          zIndex: 25, // Higher z-index to stay above center during transition
-          opacity: 0.9,
-          width: 'clamp(220px, 28vw, 320px)',
-          height: 'clamp(220px, 28vw, 320px)',
-        };
-      default:
-        return {
-          ...baseStyles,
-          opacity: 0,
-          transform: 'scale(0.5)',
-          zIndex: 10, // Lower z-index for hidden images
-          width: '0px',
-          height: '0px',
-        };
+    if (relativePosition === 0) {
+      // Left position
+      return {
+        ...baseStyles,
+        left: '10%',
+        transform: 'translateY(-50%) scale(0.8)',
+        zIndex: 20,
+        opacity: 0.85,
+        width: 'clamp(200px, 25vw, 300px)',
+        height: 'clamp(200px, 25vw, 300px)',
+      };
+    } else if (relativePosition === 1) {
+      // Center position (main)
+      return {
+        ...baseStyles,
+        left: '50%',
+        transform: 'translateX(-50%) translateY(-50%) scale(1)',
+        zIndex: 30,
+        opacity: 1,
+        width: 'clamp(280px, 35vw, 400px)',
+        height: 'clamp(280px, 35vw, 400px)',
+      };
+    } else if (relativePosition === 2) {
+      // Right position
+      return {
+        ...baseStyles,
+        right: '10%',
+        transform: 'translateY(-50%) scale(0.8)',
+        zIndex: 20,
+        opacity: 0.85,
+        width: 'clamp(200px, 25vw, 300px)',
+        height: 'clamp(200px, 25vw, 300px)',
+      };
+    } else {
+      // Hidden
+      return {
+        ...baseStyles,
+        left: '50%',
+        transform: 'translateX(-50%) translateY(-50%) scale(0)',
+        zIndex: 10,
+        opacity: 0,
+        width: '0px',
+        height: '0px',
+      };
     }
   };
 
@@ -140,7 +137,7 @@ const Hero: React.FC = () => {
                   key={slide.id}
                   src={slide.image}
                   alt={slide.alt}
-                  style={getImageStyle(index)}
+                  style={getImagePosition(index)}
                   className="drop-shadow-lg"
                   onError={(e) => {
                     console.error(`Failed to load image: ${slide.image}`);
