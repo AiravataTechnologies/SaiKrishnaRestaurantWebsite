@@ -120,7 +120,7 @@
 // export default Footer;
 import React from "react";
 import { Heart, Phone, Mail, MapPin, Facebook, Instagram } from "lucide-react";
-import saiKrishnaLogo from "@assets/image_1755346519492.png";
+import saiKrishnaLogo from "@assets/image_1755345512280.png";
 
 const Footer: React.FC = () => {
   return (
