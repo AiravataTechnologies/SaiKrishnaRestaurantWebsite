@@ -44,9 +44,8 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Simple left-center-right positioning
+  // Show all 5 images at once with rotating focus
   const getImagePosition = (slideIndex: number) => {
-    // Calculate which position each slide should be in
     const relativePosition = (slideIndex - currentSlide + slides.length) % slides.length;
     
     const baseStyles = {
@@ -57,51 +56,68 @@ const Hero: React.FC = () => {
       objectPosition: 'center' as const,
     };
 
-    // With 5 images, show 3 at a time: left, center, right
-    if (relativePosition === 0) {
-      // Left position
-      return {
-        ...baseStyles,
-        left: '10%',
-        transform: 'translateY(-50%) scale(0.8)',
-        zIndex: 20,
-        opacity: 0.85,
-        width: 'clamp(200px, 25vw, 300px)',
-        height: 'clamp(200px, 25vw, 300px)',
-      };
-    } else if (relativePosition === 1) {
-      // Center position (main)
-      return {
-        ...baseStyles,
-        left: '50%',
-        transform: 'translateX(-50%) translateY(-50%) scale(1)',
-        zIndex: 30,
-        opacity: 1,
-        width: 'clamp(280px, 35vw, 400px)',
-        height: 'clamp(280px, 35vw, 400px)',
-      };
-    } else if (relativePosition === 2) {
-      // Right position
-      return {
-        ...baseStyles,
-        right: '10%',
-        transform: 'translateY(-50%) scale(0.8)',
-        zIndex: 20,
-        opacity: 0.85,
-        width: 'clamp(200px, 25vw, 300px)',
-        height: 'clamp(200px, 25vw, 300px)',
-      };
-    } else {
-      // Hidden (positions 3 and 4 are off-screen)
-      return {
-        ...baseStyles,
-        left: '50%',
-        transform: 'translateX(-50%) translateY(-50%) scale(0)',
-        zIndex: 10,
-        opacity: 0,
-        width: '0px',
-        height: '0px',
-      };
+    // Position all 5 images across the screen
+    switch (relativePosition) {
+      case 0: // Far left
+        return {
+          ...baseStyles,
+          left: '5%',
+          transform: 'translateY(-50%) scale(0.7)',
+          zIndex: 15,
+          opacity: 0.7,
+          width: 'clamp(150px, 18vw, 250px)',
+          height: 'clamp(150px, 18vw, 250px)',
+        };
+      case 1: // Left
+        return {
+          ...baseStyles,
+          left: '20%',
+          transform: 'translateY(-50%) scale(0.85)',
+          zIndex: 20,
+          opacity: 0.85,
+          width: 'clamp(180px, 22vw, 280px)',
+          height: 'clamp(180px, 22vw, 280px)',
+        };
+      case 2: // Center (main focus)
+        return {
+          ...baseStyles,
+          left: '50%',
+          transform: 'translateX(-50%) translateY(-50%) scale(1)',
+          zIndex: 30,
+          opacity: 1,
+          width: 'clamp(220px, 28vw, 350px)',
+          height: 'clamp(220px, 28vw, 350px)',
+        };
+      case 3: // Right
+        return {
+          ...baseStyles,
+          right: '20%',
+          transform: 'translateY(-50%) scale(0.85)',
+          zIndex: 20,
+          opacity: 0.85,
+          width: 'clamp(180px, 22vw, 280px)',
+          height: 'clamp(180px, 22vw, 280px)',
+        };
+      case 4: // Far right
+        return {
+          ...baseStyles,
+          right: '5%',
+          transform: 'translateY(-50%) scale(0.7)',
+          zIndex: 15,
+          opacity: 0.7,
+          width: 'clamp(150px, 18vw, 250px)',
+          height: 'clamp(150px, 18vw, 250px)',
+        };
+      default:
+        return {
+          ...baseStyles,
+          left: '50%',
+          transform: 'translateX(-50%) translateY(-50%) scale(0)',
+          zIndex: 10,
+          opacity: 0,
+          width: '0px',
+          height: '0px',
+        };
     }
   };
 
@@ -142,9 +158,9 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Overlapping Images - No containers, pure overlapping with responsive positioning */}
-          <div className="relative w-full max-w-5xl mx-auto mb-16 md:mb-20">
-            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] w-full">
+          {/* All 5 Images Visible - Rotating Focus */}
+          <div className="relative w-full max-w-7xl mx-auto mb-16 md:mb-20">
+            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] w-full overflow-hidden">
               {slides.map((slide, index) => (
                 <img
                   key={slide.id}
