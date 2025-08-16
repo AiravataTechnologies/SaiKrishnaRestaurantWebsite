@@ -60,15 +60,15 @@ const Header: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <img 
                   src="/images/logo.png" 
-                  alt="Sri Krishna Restaurant Logo" 
-                  className="w-12 h-12 object-contain"
+                  alt="Sai Krishna Restaurant Logo" 
+                  className="w-16 h-16 object-contain"
                 />
                 <div>
-                  <div className="text-2xl font-bold">
-                    <span className="text-green-700">SRI</span>
+                  <div className="text-3xl font-bold">
+                    <span className="text-green-700">SAI</span>
                     <span className="text-orange-500 ml-1">KRISHNA</span>
                   </div>
-                  <div className="text-xs text-gray-600 tracking-wider">R E S T A U R A N T</div>
+                  <div className="text-sm text-gray-600 tracking-wider">R E S T A U R A N T</div>
                 </div>
               </div>
             </div>

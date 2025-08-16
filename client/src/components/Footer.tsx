@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               </div>
               <div>
                 <div className="text-2xl font-bold">
-                  <span className="text-white">SRI</span>
+                  <span className="text-white">SAI</span>
                   <span className="text-orange-400 ml-1">KRISHNA</span>
                 </div>
                 <div className="text-xs text-gray-300 tracking-wider">R E S T A U R A N T</div>

@@ -30,11 +30,11 @@ const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-green-800 mb-6">
-            About <span className="text-orange-500">Sri Krishna</span>
+            About <span className="text-orange-500">Sai Krishna</span>
           </h2>
           <div className="w-24 h-1 bg-orange-500 mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Experience the authentic taste of South India at Sri Krishna Restaurant. 
+            Experience the authentic taste of South India at Sai Krishna Restaurant. 
             We bring you traditional flavors, aromatic spices, and time-honored recipes 
             in a warm and welcoming atmosphere.
           </p>
@@ -46,7 +46,7 @@ const About: React.FC = () => {
               Our Story
             </h3>
             <p className="text-gray-600 text-lg leading-relaxed">
-              Founded over 43 years ago, Sri Krishna Restaurant has been serving authentic South Indian 
+              Founded over 43 years ago, Sai Krishna Restaurant has been serving authentic South Indian 
               cuisine to food lovers who appreciate traditional flavors and genuine hospitality. 
               Our journey began with a simple mission: to share the rich culinary heritage of 
               South India with our community in Mumbai.

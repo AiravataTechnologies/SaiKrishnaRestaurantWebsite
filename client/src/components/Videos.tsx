@@ -4,7 +4,7 @@ import { Play } from 'lucide-react';
 const Videos: React.FC = () => {
   const videos = [
     {
-      title: "Sri Krishna Restaurant Food Testimonial",
+      title: "Sai Krishna Restaurant Food Testimonial",
       thumbnail: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600",
       duration: "3:45"
     },

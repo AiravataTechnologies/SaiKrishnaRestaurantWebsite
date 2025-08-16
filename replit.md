@@ -1,6 +1,6 @@
 # Overview
 
-This is a restaurant website application for Shri Krishna Restaurant, a 43-year-old family-run South Indian restaurant in Mumbai. The project is built as a full-stack TypeScript application with a React frontend and Express backend, featuring a modern restaurant website with sections for menu display, gallery, reviews, contact information, and more. The application uses a component-based architecture with modern UI components from shadcn/ui.
+This is a restaurant website application for Sai Krishna Restaurant, a 43-year-old family-run South Indian restaurant in Mumbai. The project is built as a full-stack TypeScript application with a React frontend and Express backend, featuring a modern restaurant website with sections for menu display, gallery, reviews, contact information, and more. The application uses a component-based architecture with modern UI components from shadcn/ui.
 
 # User Preferences
 

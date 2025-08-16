@@ -107,7 +107,7 @@ const Contact: React.FC = () => {
                   <MapPin className="w-5 h-5 text-orange-500" />
                 </div>
                 <div>
-                  <div className="font-bold text-gray-900">Sri Krishna</div>
+                  <div className="font-bold text-gray-900">Sai Krishna</div>
                   <div className="text-sm text-gray-600">Restaurant</div>
                 </div>
               </div>
