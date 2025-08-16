@@ -1,62 +1,103 @@
-import React, { useState } from 'react';
-import { X, Play } from 'lucide-react';
+import React, { useState, useEffect, useRef } from "react";
+import { X, Play } from "lucide-react";
 
 const Gallery: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const galleryItems = [
     {
-      type: 'video',
-      thumbnail: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Sri Krishna Restaurant Food Testimonial"
+      type: "video",
+      thumbnail:
+        "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400",
+      title: "Sri Krishna Restaurant Food Testimonial",
     },
     {
-      type: 'image',
+      type: "image",
       url: "https://images.pexels.com/photos/1581384/pexels-photo-1581384.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Restaurant Exterior"
+      title: "Restaurant Exterior",
     },
     {
-      type: 'image',
+      type: "image",
       url: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Private Dining Room"
+      title: "Private Dining Room",
     },
     {
-      type: 'image',
+      type: "image",
       url: "https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Kitchen View"
+      title: "Kitchen View",
     },
     {
-      type: 'image',
-      url: "https://images.pexels.com/photos/1625736/pexels-photo-1625736.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Dining Area"
+      type: "image",
+      url: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
+      title: "Dining Area",
     },
     {
-      type: 'image',
+      type: "image",
       url: "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Food Preparation"
+      title: "Food Preparation",
     },
     {
-      type: 'image',
+      type: "image",
       url: "https://images.pexels.com/photos/6419686/pexels-photo-6419686.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Team Photo"
+      title: "Team Photo",
     },
     {
-      type: 'image',
+      type: "image",
       url: "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Kitchen Staff"
-    }
+      title: "Kitchen Staff",
+    },
   ];
 
   return (
-    <section id="gallery" className="py-20 bg-gradient-to-br from-green-800 via-green-700 to-green-900 relative overflow-hidden">
+    <section
+      ref={sectionRef}
+      id="gallery"
+      className="py-20 bg-gradient-to-br from-green-800 via-green-700 to-green-900 relative overflow-hidden"
+    >
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-green-600 rounded-full opacity-20 transform -translate-x-32 -translate-y-32"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-600 rounded-full opacity-20 transform translate-x-48 translate-y-48"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* White content box */}
-        <div className="bg-white rounded-3xl p-12 shadow-2xl">
-          <div className="text-center mb-16">
+        <div
+          className={`bg-white rounded-3xl p-12 shadow-2xl transition-all duration-1000 ease-out ${
+            isVisible
+              ? "opacity-100 transform translate-y-0"
+              : "opacity-0 transform translate-y-16"
+          }`}
+        >
+          <div
+            className={`text-center mb-16 transition-all duration-1000 ease-out delay-300 ${
+              isVisible
+                ? "opacity-100 transform translate-y-0"
+                : "opacity-0 transform translate-y-8"
+            }`}
+          >
             {/* Decorative ornament */}
             <div className="flex justify-center mb-6">
               <div className="text-orange-500 text-3xl">✦ ❋ ✦</div>
@@ -72,8 +113,14 @@ const Gallery: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {/* Video thumbnail */}
             <div className="lg:col-span-2 lg:row-span-2">
-              <div className="relative group cursor-pointer overflow-hidden rounded-xl h-full min-h-64">
-                <img 
+              <div
+                className={`relative group cursor-pointer overflow-hidden rounded-xl h-full min-h-64 transition-all duration-700 ease-out delay-500 ${
+                  isVisible
+                    ? "opacity-100 transform translate-y-0 scale-100"
+                    : "opacity-0 transform translate-y-12 scale-95"
+                }`}
+              >
+                <img
                   src={galleryItems[0].thumbnail}
                   alt="Video thumbnail"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
@@ -91,12 +138,21 @@ const Gallery: React.FC = () => {
 
             {/* Gallery images */}
             {galleryItems.slice(1).map((item, index) => (
-              <div 
+              <div
                 key={index}
-                className="relative group cursor-pointer overflow-hidden rounded-xl"
-                onClick={() => item.type === 'image' && setSelectedImage(item.url!)}
+                className={`relative group cursor-pointer overflow-hidden rounded-xl transition-all duration-700 ease-out ${
+                  isVisible
+                    ? "opacity-100 transform translate-y-0 scale-100"
+                    : "opacity-0 transform translate-y-12 scale-95"
+                }`}
+                style={{
+                  transitionDelay: `${600 + index * 100}ms`,
+                }}
+                onClick={() =>
+                  item.type === "image" && setSelectedImage(item.url!)
+                }
               >
-                <img 
+                <img
                   src={item.url}
                   alt={item.title}
                   className="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
@@ -114,18 +170,18 @@ const Gallery: React.FC = () => {
 
       {/* Modal for enlarged image */}
       {selectedImage && (
-        <div 
-          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 animate-fade-in"
           onClick={() => setSelectedImage(null)}
         >
-          <div className="relative max-w-4xl max-h-full">
-            <button 
+          <div className="relative max-w-4xl max-h-full animate-scale-in">
+            <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-4 right-4 text-white hover:text-gray-300 z-10"
             >
               <X className="w-8 h-8" />
             </button>
-            <img 
+            <img
               src={selectedImage}
               alt="Gallery image"
               className="max-w-full max-h-full object-contain rounded-lg"
@@ -134,6 +190,36 @@ const Gallery: React.FC = () => {
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes scale-in {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out;
+        }
+
+        .animate-scale-in {
+          animation: scale-in 0.3s ease-out;
+        }
+      `}</style>
     </section>
   );
 };
