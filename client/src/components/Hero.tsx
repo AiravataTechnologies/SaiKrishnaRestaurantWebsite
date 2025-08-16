@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Calculate positions for overlapping images
+  // Calculate positions for overlapping images with responsive positioning
   const getImageStyle = (index: number) => {
     const currentIndex = currentSlide;
     const totalImages = slides.length;
@@ -40,28 +40,26 @@ const Hero: React.FC = () => {
     // Calculate the position relative to current slide
     let position = (index - currentIndex + totalImages) % totalImages;
     
-    // Position 0: Left side
-    // Position 1: Center (main/front)
-    // Position 2: Right side
-    
+    // Responsive base styles
     const baseStyles = {
       position: 'absolute' as const,
       transition: 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
-      width: '350px',
-      height: '350px',
       objectFit: 'contain' as const,
       objectPosition: 'center' as const,
     };
 
+    // Responsive sizing and positioning
     switch (position) {
       case 0: // Left position
         return {
           ...baseStyles,
-          left: '5%',
+          left: 'calc(50% - 200px)', // Fixed distance from center
           top: '50%',
-          transform: 'translateY(-50%) scale(0.7)',
+          transform: 'translateY(-50%) scale(0.75)',
           zIndex: 10,
-          opacity: 0.8,
+          opacity: 0.85,
+          width: 'clamp(200px, 25vw, 300px)',
+          height: 'clamp(200px, 25vw, 300px)',
         };
       case 1: // Center position (main)
         return {
@@ -71,15 +69,19 @@ const Hero: React.FC = () => {
           transform: 'translateX(-50%) translateY(-50%) scale(1)',
           zIndex: 30,
           opacity: 1,
+          width: 'clamp(250px, 30vw, 350px)',
+          height: 'clamp(250px, 30vw, 350px)',
         };
       case 2: // Right position
         return {
           ...baseStyles,
-          right: '5%',
+          left: 'calc(50% + 200px)', // Fixed distance from center
           top: '50%',
-          transform: 'translateY(-50%) scale(0.7)',
+          transform: 'translateY(-50%) scale(0.75)',
           zIndex: 10,
-          opacity: 0.8,
+          opacity: 0.85,
+          width: 'clamp(200px, 25vw, 300px)',
+          height: 'clamp(200px, 25vw, 300px)',
         };
       default:
         return {
@@ -87,6 +89,8 @@ const Hero: React.FC = () => {
           opacity: 0,
           transform: 'scale(0.5)',
           zIndex: 0,
+          width: '0px',
+          height: '0px',
         };
     }
   };
@@ -107,36 +111,37 @@ const Hero: React.FC = () => {
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
-          {/* Header Text */}
-          <div className="text-center mb-16">
-            <div className="space-y-6">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-gray-800 drop-shadow-lg">
+          {/* Header Text - Mobile responsive */}
+          <div className="text-center mb-12 md:mb-16">
+            <div className="space-y-4 md:space-y-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-gray-800 drop-shadow-lg px-4">
                 Serving Authentic &
               </h1>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-700 drop-shadow-md">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-700 drop-shadow-md px-4">
                 Creative South Indian Cuisine
               </h2>
             </div>
             
             {/* Decorative line with "Since 43+ Years" */}
-            <div className="flex items-center justify-center space-x-6 mt-8">
-              <div className="h-px bg-orange-400 w-24"></div>
-              <span className="text-orange-600 text-xl font-semibold italic tracking-wider drop-shadow-sm">
+            <div className="flex items-center justify-center space-x-4 md:space-x-6 mt-6 md:mt-8 px-4">
+              <div className="h-px bg-orange-400 w-16 md:w-24"></div>
+              <span className="text-orange-600 text-lg md:text-xl font-semibold italic tracking-wider drop-shadow-sm whitespace-nowrap">
                 Since 43+ Years
               </span>
-              <div className="h-px bg-orange-400 w-24"></div>
+              <div className="h-px bg-orange-400 w-16 md:w-24"></div>
             </div>
           </div>
 
-          {/* Overlapping Images - No containers, pure overlapping */}
-          <div className="relative w-full max-w-6xl mx-auto mb-20">
-            <div className="relative h-96 lg:h-[500px] w-full">
+          {/* Overlapping Images - No containers, pure overlapping with responsive positioning */}
+          <div className="relative w-full max-w-4xl mx-auto mb-16 md:mb-20">
+            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] w-full overflow-hidden">
               {slides.map((slide, index) => (
                 <img
                   key={slide.id}
                   src={slide.image}
                   alt={slide.alt}
                   style={getImageStyle(index)}
+                  className="drop-shadow-lg"
                   onError={(e) => {
                     console.error(`Failed to load image: ${slide.image}`);
                     e.currentTarget.style.display = 'none';
@@ -161,53 +166,53 @@ const Hero: React.FC = () => {
               ))}
             </div>
 
-            {/* Navigation Arrows */}
+            {/* Navigation Arrows - Responsive positioning */}
             <button
               onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
+              className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-2 md:p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
               aria-label="Previous slide"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button
               onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
+              className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-2 md:p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
               aria-label="Next slide"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+          {/* Action Buttons - Mobile responsive */}
+          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 px-4">
             <button 
-              className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+              className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
               onClick={() => {
                 document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               <span className="flex items-center justify-center space-x-2">
-                <span>View Menu</span>
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span className="text-sm md:text-base">View Menu</span>
+                <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </span>
             </button>
             <button 
-              className="group border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg bg-white/80 backdrop-blur-sm"
+              className="group border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg bg-white/80 backdrop-blur-sm"
               onClick={() => {
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               <span className="flex items-center justify-center space-x-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 8M7 13l2.5 8m0 0h8.5M7 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
                 </svg>
-                <span>Order Online</span>
+                <span className="text-sm md:text-base">Order Online</span>
               </span>
             </button>
           </div>
