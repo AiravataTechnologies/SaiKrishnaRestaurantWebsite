@@ -21,6 +21,18 @@ const Hero: React.FC = () => {
       image: '/images/Hero3.png',
       alt: 'Fresh Idli and Sambar',
       title: 'Soft Idli'
+    },
+    {
+      id: 3,
+      image: '/images/hero4.png',
+      alt: 'Delicious South Indian Speciality',
+      title: 'Special Dish'
+    },
+    {
+      id: 4,
+      image: '/images/hero5.png',
+      alt: 'Traditional South Indian Cuisine',
+      title: 'Authentic Meal'
     }
   ];
 
@@ -45,6 +57,7 @@ const Hero: React.FC = () => {
       objectPosition: 'center' as const,
     };
 
+    // With 5 images, show 3 at a time: left, center, right
     if (relativePosition === 0) {
       // Left position
       return {
@@ -79,7 +92,7 @@ const Hero: React.FC = () => {
         height: 'clamp(200px, 25vw, 300px)',
       };
     } else {
-      // Hidden
+      // Hidden (positions 3 and 4 are off-screen)
       return {
         ...baseStyles,
         left: '50%',
