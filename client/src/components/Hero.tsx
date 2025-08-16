@@ -48,12 +48,12 @@ const Hero: React.FC = () => {
       objectPosition: 'center' as const,
     };
 
-    // True overlapping positioning - much closer together
+    // Proper horizontal line positioning with overlapping
     switch (position) {
-      case 0: // Left position - overlapping center
+      case 0: // Left position - properly positioned on the left
         return {
           ...baseStyles,
-          left: 'calc(50% - 80px)', // Much closer to center
+          left: 'calc(50% - 160px)', // Further left to create proper line
           top: '50%',
           transform: 'translateY(-50%) scale(0.85)',
           zIndex: 20,
@@ -72,10 +72,10 @@ const Hero: React.FC = () => {
           width: 'clamp(250px, 32vw, 380px)',
           height: 'clamp(250px, 32vw, 380px)',
         };
-      case 2: // Right position - overlapping center
+      case 2: // Right position - properly positioned on the right
         return {
           ...baseStyles,
-          left: 'calc(50% + 80px)', // Much closer to center
+          left: 'calc(50% + 160px)', // Further right to create proper line
           top: '50%',
           transform: 'translateY(-50%) scale(0.85)',
           zIndex: 20,
@@ -133,8 +133,8 @@ const Hero: React.FC = () => {
           </div>
 
           {/* Overlapping Images - No containers, pure overlapping with responsive positioning */}
-          <div className="relative w-full max-w-4xl mx-auto mb-16 md:mb-20">
-            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] w-full overflow-hidden">
+          <div className="relative w-full max-w-5xl mx-auto mb-16 md:mb-20">
+            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] w-full">
               {slides.map((slide, index) => (
                 <img
                   key={slide.id}
