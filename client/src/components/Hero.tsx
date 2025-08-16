@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import heroImage1 from '@assets/image_1755345512280.png';
-import heroImage2 from '@assets/image_1755346157465.png';
-import heroImage3 from '@assets/image_1755346702774.png';
+import southIndianSpread from '@assets/image_1755345512280.png';
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -9,21 +7,21 @@ const Hero: React.FC = () => {
   const slides = [
     {
       id: 0,
-      image: heroImage1,
-      alt: 'Traditional South Indian Cuisine',
-      title: 'Authentic Flavors'
+      image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      alt: 'Traditional South Indian Vada',
+      title: 'Crispy Vada'
     },
     {
       id: 1,
-      image: heroImage2,
-      alt: 'South Indian Specialties',
-      title: 'Traditional Dishes'
+      image: 'https://images.unsplash.com/photo-1626132647523-66f2bf4a6d0e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      alt: 'Fresh Idli with Sambar',
+      title: 'Soft Idli'
     },
     {
       id: 2,
-      image: heroImage3,
-      alt: 'Fresh South Indian Food',
-      title: 'Fresh & Delicious'
+      image: 'https://images.unsplash.com/photo-1630409346334-d0dbc9b8bb5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      alt: 'Traditional South Indian Thali',
+      title: 'Complete Thali'
     }
   ];
 
@@ -50,9 +48,13 @@ const Hero: React.FC = () => {
   return (
     <section 
       id="home" 
-      className="relative w-full bg-gradient-to-br from-orange-50 via-white to-green-50 -mt-32 pt-32"
+      className="relative w-full -mt-32 pt-32"
       style={{
-        minHeight: '100vh'
+        minHeight: '100vh',
+        background: `linear-gradient(rgba(255,248,240,0.9), rgba(240,253,244,0.9)), url(${southIndianSpread})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}
     >
       {/* Content overlay */}
