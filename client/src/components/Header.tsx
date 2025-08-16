@@ -51,7 +51,7 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-gradient-to-r from-green-800/90 to-green-700/90 text-white py-3 px-4 shadow-sm">
+      {/* <div className="bg-gradient-to-r from-green-800/90 to-green-700/90 text-white py-3 px-4 shadow-sm">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center text-sm">
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2 hover:text-orange-200 transition-colors">
@@ -75,7 +75,7 @@ const Header: React.FC = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Main Header */}
       <header

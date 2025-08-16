@@ -32,6 +32,65 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
+  // Calculate positions for overlapping images
+  const getImageStyle = (index: number) => {
+    const currentIndex = currentSlide;
+    const totalImages = slides.length;
+    
+    // Calculate the position relative to current slide
+    let position = (index - currentIndex + totalImages) % totalImages;
+    
+    // Position 0: Left side
+    // Position 1: Center (main/front)
+    // Position 2: Right side
+    
+    const baseStyles = {
+      position: 'absolute' as const,
+      transition: 'all 1.2s cubic-bezier(0.4, 0, 0.2, 1)',
+      width: '350px',
+      height: '350px',
+      objectFit: 'contain' as const,
+      objectPosition: 'center' as const,
+    };
+
+    switch (position) {
+      case 0: // Left position
+        return {
+          ...baseStyles,
+          left: '5%',
+          top: '50%',
+          transform: 'translateY(-50%) scale(0.7)',
+          zIndex: 10,
+          opacity: 0.8,
+        };
+      case 1: // Center position (main)
+        return {
+          ...baseStyles,
+          left: '50%',
+          top: '50%',
+          transform: 'translateX(-50%) translateY(-50%) scale(1)',
+          zIndex: 30,
+          opacity: 1,
+        };
+      case 2: // Right position
+        return {
+          ...baseStyles,
+          right: '5%',
+          top: '50%',
+          transform: 'translateY(-50%) scale(0.7)',
+          zIndex: 10,
+          opacity: 0.8,
+        };
+      default:
+        return {
+          ...baseStyles,
+          opacity: 0,
+          transform: 'scale(0.5)',
+          zIndex: 0,
+        };
+    }
+  };
+
   return (
     <section 
       id="home" 
@@ -42,19 +101,19 @@ const Hero: React.FC = () => {
       }}
     >
       {/* Background overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/20"></div>
+      <div className="absolute inset-0 bg-black/10"></div>
       
       {/* Content overlay */}
       <div className="relative z-10 w-full h-full flex flex-col items-center justify-center py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
           {/* Header Text */}
-          <div className="text-center mb-20">
+          <div className="text-center mb-16">
             <div className="space-y-6">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-white drop-shadow-2xl">
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight text-gray-800 drop-shadow-lg">
                 Serving Authentic &
               </h1>
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white/90 drop-shadow-xl">
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-700 drop-shadow-md">
                 Creative South Indian Cuisine
               </h2>
             </div>
@@ -62,57 +121,32 @@ const Hero: React.FC = () => {
             {/* Decorative line with "Since 43+ Years" */}
             <div className="flex items-center justify-center space-x-6 mt-8">
               <div className="h-px bg-orange-400 w-24"></div>
-              <span className="text-orange-400 text-xl font-semibold italic tracking-wider drop-shadow-lg">
+              <span className="text-orange-600 text-xl font-semibold italic tracking-wider drop-shadow-sm">
                 Since 43+ Years
               </span>
               <div className="h-px bg-orange-400 w-24"></div>
             </div>
           </div>
 
-          {/* Horizontal Sliding Images Carousel */}
+          {/* Overlapping Images - No containers, pure overlapping */}
           <div className="relative w-full max-w-6xl mx-auto mb-20">
-            <div className="overflow-hidden rounded-2xl shadow-2xl">
-              <div 
-                className="flex transition-transform duration-1000 ease-in-out"
-                style={{ 
-                  transform: `translateX(-${currentSlide * 100}%)`,
-                  width: `${slides.length * 100}%`
-                }}
-              >
-                {slides.map((slide, index) => (
-                  <div
-                    key={slide.id}
-                    className="w-full flex-shrink-0"
-                    style={{ width: `${100 / slides.length}%` }}
-                  >
-                    <div className="relative h-96 lg:h-[500px]">
-                      <img
-                        src={slide.image}
-                        alt={slide.alt}
-                        className="w-full h-full object-contain bg-white/5 backdrop-blur-sm"
-                        style={{
-                          objectFit: 'contain',
-                          objectPosition: 'center'
-                        }}
-                        onError={(e) => {
-                          console.error(`Failed to load image: ${slide.image}`);
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                      {/* Optional overlay with title */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
-                        <h3 className="text-white text-2xl font-semibold text-center drop-shadow-lg">
-                          {slide.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="relative h-96 lg:h-[500px] w-full">
+              {slides.map((slide, index) => (
+                <img
+                  key={slide.id}
+                  src={slide.image}
+                  alt={slide.alt}
+                  style={getImageStyle(index)}
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${slide.image}`);
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+              ))}
             </div>
             
             {/* Slide Indicators */}
-            <div className="flex justify-center space-x-3 mt-6">
+            <div className="flex justify-center space-x-3 mt-8">
               {slides.map((_, index) => (
                 <button
                   key={index}
@@ -120,7 +154,7 @@ const Hero: React.FC = () => {
                   className={`transition-all duration-300 ${
                     index === currentSlide 
                       ? 'w-12 h-3 bg-orange-500 rounded-full shadow-lg' 
-                      : 'w-3 h-3 bg-white/60 rounded-full hover:bg-white/80'
+                      : 'w-3 h-3 bg-gray-400 rounded-full hover:bg-orange-300'
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -130,7 +164,7 @@ const Hero: React.FC = () => {
             {/* Navigation Arrows */}
             <button
               onClick={() => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
               aria-label="Previous slide"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,7 +173,7 @@ const Hero: React.FC = () => {
             </button>
             <button
               onClick={() => setCurrentSlide((prev) => (prev + 1) % slides.length)}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 hover:scale-110"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white/30 hover:bg-white/50 backdrop-blur-sm text-gray-700 p-3 rounded-full transition-all duration-300 hover:scale-110 z-40"
               aria-label="Next slide"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -164,7 +198,7 @@ const Hero: React.FC = () => {
               </span>
             </button>
             <button 
-              className="group border-2 border-green-500 text-green-500 hover:bg-green-500 hover:text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg backdrop-blur-sm bg-white/10"
+              className="group border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg bg-white/80 backdrop-blur-sm"
               onClick={() => {
                 document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
               }}
