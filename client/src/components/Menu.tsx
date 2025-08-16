@@ -1,8 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
 
 const Menu: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('breakfast');
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const menuItems = {
     breakfast: [
@@ -107,49 +127,56 @@ const Menu: React.FC = () => {
   ];
 
   return (
-    <section id="menu" className="py-20 bg-white">
+    <section ref={sectionRef} id="menu" className="py-12 sm:py-16 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           {/* Decorative ornament */}
-          <div className="flex justify-center mb-6">
-            <div className="text-orange-500 text-3xl">✦ ❋ ✦</div>
+          <div className="flex justify-center mb-4 sm:mb-6">
+            <div className="text-orange-500 text-2xl sm:text-3xl">✦ ❋ ✦</div>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 sm:mb-6 px-4">
             Best Dishes
           </h2>
-          <div className="flex justify-center mb-6">
-            <div className="text-orange-500 text-3xl">❋ ✦ ❋</div>
+          <div className="flex justify-center mb-4 sm:mb-6">
+            <div className="text-orange-500 text-2xl sm:text-3xl">❋ ✦ ❋</div>
           </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
             Discover authentic South Indian flavors crafted with traditional recipes 
             and the finest ingredients.
           </p>
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center mb-12 space-x-2">
+        <div className={`flex flex-wrap justify-center mb-8 sm:mb-12 gap-2 sm:gap-4 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+        }`}>
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300 mb-2 ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-base sm:text-lg font-semibold transition-all duration-300 ${
                 activeCategory === category.id
                   ? 'bg-orange-500 text-white transform scale-105'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >
-              <span className="mr-2">{category.icon}</span>
+              <span className="mr-1 sm:mr-2">{category.icon}</span>
               {category.name}
             </button>
           ))}
         </div>
 
         {/* Menu Items Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {menuItems[activeCategory as keyof typeof menuItems].map((item, index) => (
             <div 
               key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group hover:-translate-y-2 border border-gray-100"
+              className={`bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group hover:-translate-y-2 border border-gray-100 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              style={{ transitionDelay: `${600 + index * 150}ms` }}
             >
               <div className="relative">
                 <img 
