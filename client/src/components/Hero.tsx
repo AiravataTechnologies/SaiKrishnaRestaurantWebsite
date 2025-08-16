@@ -8,22 +8,19 @@ const Hero: React.FC = () => {
       id: 0,
       image: '/images/hero1.png',
       alt: 'Traditional South Indian Vada',
-      title: 'Crispy Vada',
-      position: 'left'
+      title: 'Crispy Vada'
     },
     {
       id: 1,
       image: '/images/hero2.png',
       alt: 'Authentic South Indian Thali',
-      title: 'Complete Thali',
-      position: 'center'
+      title: 'Complete Thali'
     },
     {
       id: 2,
       image: '/images/hero3.png',
       alt: 'Fresh Idli and Sambar',
-      title: 'Soft Idli',
-      position: 'right'
+      title: 'Soft Idli'
     }
   ];
 
@@ -35,48 +32,17 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  // Function to get position and scale for each image
-  const getImageStyle = (index: number) => {
-    const isActive = index === currentSlide;
-    
-    if (isActive) {
-      // Active image moves to center and scales up
-      return {
-        transform: 'translateX(-50%) translateY(-50%) scale(1.2)',
-        left: '50%',
-        top: '50%',
-        zIndex: 30,
-        opacity: 1
-      };
-    } else {
-      // Inactive images stay in their original positions
-      const positions = {
-        0: { // Left image
-          transform: 'translateX(20%) translateY(-30%) scale(0.85)',
-          left: '10%',
-          top: '60%',
-          zIndex: 20,
-          opacity: 0.7
-        },
-        1: { // Center image  
-          transform: 'translateX(-50%) translateY(-40%) scale(0.9)',
-          left: '50%',
-          top: '65%',
-          zIndex: 20,
-          opacity: 0.7
-        },
-        2: { // Right image
-          transform: 'translateX(-120%) translateY(-30%) scale(0.85)',
-          left: '90%',
-          top: '60%',
-          zIndex: 20,
-          opacity: 0.7
-        }
-      };
-      
-      return positions[index as keyof typeof positions] || positions[1];
+  // Get the order of images based on current slide
+  const getImageOrder = () => {
+    const order = [];
+    for (let i = 0; i < slides.length; i++) {
+      const index = (currentSlide + i) % slides.length;
+      order.push(slides[index]);
     }
+    return order;
   };
+
+  const orderedSlides = getImageOrder();
 
   return (
     <section 
@@ -113,50 +79,71 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Food Images with Dynamic Centering Animation */}
+          {/* Food Images with Rotating Positions */}
           <div className="relative flex justify-center items-center">
             <div className="relative w-full max-w-5xl h-80 lg:h-96">
               
-              {/* Dynamic image positioning with center focus */}
-              <div className="absolute inset-0">
-                {slides.map((slide, index) => {
-                  const style = getImageStyle(index);
-                  const isActive = index === currentSlide;
-                  
-                  return (
-                    <div
-                      key={slide.id}
-                      className="absolute transition-all duration-1000 ease-in-out"
-                      style={{
-                        transform: style.transform,
-                        left: style.left,
-                        top: style.top,
-                        zIndex: style.zIndex,
-                        opacity: style.opacity,
-                        width: isActive ? '320px' : '240px',
-                        height: isActive ? '320px' : '240px',
-                      }}
-                    >
-                      <img
-                        src={slide.image}
-                        alt={slide.alt}
-                        className="w-full h-full object-cover shadow-2xl"
-                        data-testid={`img-hero-${index + 1}`}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+              {/* Three images in rotating positions */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                
+                {/* Left Image (position 0) */}
+                <div 
+                  className="absolute transition-all duration-1000 ease-in-out"
+                  style={{
+                    left: '10%',
+                    top: '50%',
+                    transform: 'translateY(-50%) scale(0.8)',
+                    zIndex: 20,
+                    width: '240px',
+                    height: '240px'
+                  }}
+                >
+                  <img
+                    src={orderedSlides[0]?.image}
+                    alt={orderedSlides[0]?.alt}
+                    className="w-full h-full object-cover shadow-2xl"
+                    data-testid="img-hero-left"
+                  />
+                </div>
 
-              {/* Active image title overlay - always centered */}
-              <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 z-40">
-                <div className="bg-white/90 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg border border-orange-200">
-                  <h3 className="text-green-800 font-bold text-lg text-center">
-                    {slides[currentSlide].title}
-                  </h3>
-                  <p className="text-orange-600 text-sm text-center">
-                    Authentic South Indian Delicacy
-                  </p>
+                {/* Center Image (position 1) - Always zoomed */}
+                <div 
+                  className="absolute transition-all duration-1000 ease-in-out"
+                  style={{
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translateX(-50%) translateY(-50%) scale(1.2)',
+                    zIndex: 30,
+                    width: '320px',
+                    height: '320px'
+                  }}
+                >
+                  <img
+                    src={orderedSlides[1]?.image}
+                    alt={orderedSlides[1]?.alt}
+                    className="w-full h-full object-cover shadow-2xl"
+                    data-testid="img-hero-center"
+                  />
+                </div>
+
+                {/* Right Image (position 2) */}
+                <div 
+                  className="absolute transition-all duration-1000 ease-in-out"
+                  style={{
+                    right: '10%',
+                    top: '50%',
+                    transform: 'translateY(-50%) scale(0.8)',
+                    zIndex: 20,
+                    width: '240px',
+                    height: '240px'
+                  }}
+                >
+                  <img
+                    src={orderedSlides[2]?.image}
+                    alt={orderedSlides[2]?.alt}
+                    className="w-full h-full object-cover shadow-2xl"
+                    data-testid="img-hero-right"
+                  />
                 </div>
               </div>
               
