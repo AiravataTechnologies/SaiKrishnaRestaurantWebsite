@@ -46,8 +46,12 @@ const OnlineOrdering: React.FC = () => {
           style={{ transitionDelay: '300ms' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl font-bold text-orange-500">S</span>
+                <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center p-2">
+                  <img 
+                    src="/images/swiggy.png" 
+                    alt="Swiggy Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-green-800">Swiggy</h3>
@@ -87,8 +91,12 @@ const OnlineOrdering: React.FC = () => {
           style={{ transitionDelay: '600ms' }}>
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
-                  <span className="text-2xl font-bold text-red-500">Z</span>
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center p-2">
+                  <img 
+                    src="/images/zomato.png" 
+                    alt="Zomato Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold text-green-800">Zomato</h3>

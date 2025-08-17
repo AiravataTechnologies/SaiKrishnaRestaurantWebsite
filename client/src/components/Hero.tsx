@@ -228,8 +228,6 @@ const Hero: React.FC = () => {
                 />
               ))}
             </div>
-
-
           </div>
 
           {/* Action Buttons - Mobile responsive */}
