@@ -139,7 +139,7 @@ const About: React.FC = () => {
 
       {/* Auto-scrolling Menu Items */}
       <div className="relative py-6 overflow-hidden">
-        <div className="relative">
+        <div className="relative flex">
           <div className="flex animate-scroll space-x-4 sm:space-x-6 md:space-x-8">
             {/* First set of items */}
             {menuItems.map((item, index) => (
@@ -190,31 +190,7 @@ const About: React.FC = () => {
               </div>
             ))}
 
-            {/* Third set for mobile to ensure all images show */}
-            {menuItems.map((item, index) => (
-              <div
-                key={`third-${index}`}
-                className="flex-shrink-0 relative group transform transition-all duration-500 hover:scale-110 sm:hidden"
-                style={{
-                  filter:
-                    "drop-shadow(0 20px 25px rgba(0, 0, 0, 0.15)) drop-shadow(0 8px 10px rgba(0, 0, 0, 0.1))",
-                  transform: "perspective(1000px) rotateY(-2deg) rotateX(2deg)",
-                }}
-              >
-                <img
-                  src={`/images/${item.image}`}
-                  alt={item.name}
-                  className="w-48 h-32 object-contain transform transition-all duration-500"
-                  style={{
-                    transformStyle: "preserve-3d",
-                    backfaceVisibility: "hidden",
-                  }}
-                  onError={(e) => {
-                    console.error(`Failed to load image: ${item.image}`);
-                  }}
-                />
-              </div>
-            ))}
+
           </div>
         </div>
       </div>
@@ -428,22 +404,23 @@ const About: React.FC = () => {
       </div>
 
       <style jsx>{`
-        @keyframes scroll {
+        @keyframes marquee {
           0% {
-            transform: translateX(0);
+            transform: translateX(0%);
           }
           100% {
-            transform: translateX(-50%);
+            transform: translateX(-100%);
           }
         }
 
         .animate-scroll {
-          animation: scroll 10s linear infinite;
+          animation: marquee 25s linear infinite;
+          width: max-content;
         }
         
         @media (max-width: 640px) {
           .animate-scroll {
-            animation: scroll 12s linear infinite;
+            animation: marquee 15s linear infinite;
           }
         }
 
