@@ -15,12 +15,12 @@ const MobileCallToAction: React.FC = () => {
     <div 
       className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg md:hidden mobile-call-to-action" 
       style={{ 
-        height: '64px',
+        height: '48px',
         contain: 'layout style',
         willChange: 'auto'
       }}
     >
-      <div className="flex select-none" style={{ height: '64px' }}>
+      <div className="flex select-none" style={{ height: '48px' }}>
         {/* Call Now Button */}
         <button
           onClick={handleCallNow}
@@ -30,9 +30,9 @@ const MobileCallToAction: React.FC = () => {
             WebkitTapHighlightColor: 'transparent',
             WebkitTouchCallout: 'none',
             WebkitUserSelect: 'none',
-            height: '64px',
-            minHeight: '64px',
-            maxHeight: '64px',
+            height: '48px',
+            minHeight: '48px',
+            maxHeight: '48px',
             padding: '0 1.5rem',
             contain: 'layout style',
             position: 'relative',
@@ -52,9 +52,9 @@ const MobileCallToAction: React.FC = () => {
             WebkitTapHighlightColor: 'transparent',
             WebkitTouchCallout: 'none',
             WebkitUserSelect: 'none',
-            height: '64px',
-            minHeight: '64px',
-            maxHeight: '64px',
+            height: '48px',
+            minHeight: '48px',
+            maxHeight: '48px',
             padding: '0 1.5rem',
             contain: 'layout style',
             position: 'relative',
