@@ -140,54 +140,54 @@ const About: React.FC = () => {
       {/* Auto-scrolling Menu Items */}
       <div className="relative py-6 overflow-hidden">
         <div className="animate-scroll space-x-4 sm:space-x-6 md:space-x-8">
-            {/* First set of items */}
-            {menuItems.map((item, index) => (
-              <div
-                key={`first-${index}`}
-                className="flex-shrink-0 relative group transform transition-all duration-500 hover:scale-110"
+          {/* First set of items */}
+          {menuItems.map((item, index) => (
+            <div
+              key={`first-${index}`}
+              className="flex-shrink-0 relative group transform transition-all duration-500 hover:scale-110"
+              style={{
+                filter:
+                  "drop-shadow(0 20px 25px rgba(0, 0, 0, 0.15)) drop-shadow(0 8px 10px rgba(0, 0, 0, 0.1))",
+                transform: "perspective(1000px) rotateY(-2deg) rotateX(2deg)",
+              }}
+            >
+              <img
+                src={`/images/${item.image}`}
+                alt={item.name}
+                className="w-48 h-32 sm:w-56 sm:h-40 md:w-64 md:h-48 object-contain transform transition-all duration-500"
                 style={{
-                  filter:
-                    "drop-shadow(0 20px 25px rgba(0, 0, 0, 0.15)) drop-shadow(0 8px 10px rgba(0, 0, 0, 0.1))",
-                  transform: "perspective(1000px) rotateY(-2deg) rotateX(2deg)",
+                  transformStyle: "preserve-3d",
+                  backfaceVisibility: "hidden",
                 }}
-              >
-                <img
-                  src={`/images/${item.image}`}
-                  alt={item.name}
-                  className="w-48 h-32 sm:w-56 sm:h-40 md:w-64 md:h-48 object-contain transform transition-all duration-500"
-                  style={{
-                    transformStyle: "preserve-3d",
-                    backfaceVisibility: "hidden",
-                  }}
-                />
-              </div>
-            ))}
+              />
+            </div>
+          ))}
 
-            {/* Duplicate set for seamless scroll */}
-            {menuItems.map((item, index) => (
-              <div
-                key={`second-${index}`}
-                className="flex-shrink-0 relative group transform transition-all duration-500 hover:scale-110"
+          {/* Duplicate set for seamless scroll */}
+          {menuItems.map((item, index) => (
+            <div
+              key={`second-${index}`}
+              className="flex-shrink-0 relative group transform transition-all duration-500 hover:scale-110"
+              style={{
+                filter:
+                  "drop-shadow(0 20px 25px rgba(0, 0, 0, 0.15)) drop-shadow(0 8px 10px rgba(0, 0, 0, 0.1))",
+                transform: "perspective(1000px) rotateY(-2deg) rotateX(2deg)",
+              }}
+            >
+              <img
+                src={`/images/${item.image}`}
+                alt={item.name}
+                className="w-48 h-32 sm:w-56 sm:h-40 md:w-64 md:h-48 object-contain transform transition-all duration-500"
                 style={{
-                  filter:
-                    "drop-shadow(0 20px 25px rgba(0, 0, 0, 0.15)) drop-shadow(0 8px 10px rgba(0, 0, 0, 0.1))",
-                  transform: "perspective(1000px) rotateY(-2deg) rotateX(2deg)",
+                  transformStyle: "preserve-3d",
+                  backfaceVisibility: "hidden",
                 }}
-              >
-                <img
-                  src={`/images/${item.image}`}
-                  alt={item.name}
-                  className="w-48 h-32 sm:w-56 sm:h-40 md:w-64 md:h-48 object-contain transform transition-all duration-500"
-                  style={{
-                    transformStyle: "preserve-3d",
-                    backfaceVisibility: "hidden",
-                  }}
-                  onError={(e) => {
-                    console.error(`Failed to load image: ${item.image}`);
-                  }}
-                />
-              </div>
-            ))}
+                onError={(e) => {
+                  console.error(`Failed to load image: ${item.image}`);
+                }}
+              />
+            </div>
+          ))}
         </div>
       </div>
 
@@ -415,10 +415,10 @@ const About: React.FC = () => {
           width: max-content;
           will-change: transform;
         }
-        
+
         @media (max-width: 640px) {
           .animate-scroll {
-            animation: marquee 6s linear infinite;
+            animation: marquee 15s linear infinite;
           }
         }
 
