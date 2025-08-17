@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Award, Users, Clock, Heart, Star } from "lucide-react";
 
-const AnimatedCounter = ({ end, duration = 2000, suffix = "" }) => {
+const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; duration?: number; suffix?: string }) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef(null);
@@ -399,7 +399,7 @@ const About: React.FC = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes marquee {
           0% {
             transform: translateX(0%);
