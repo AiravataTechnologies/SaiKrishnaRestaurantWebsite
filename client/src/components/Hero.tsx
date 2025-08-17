@@ -149,7 +149,7 @@ const Hero: React.FC = () => {
       className="relative w-full bg-cover bg-center bg-no-repeat -mt-20 pt-20"
       style={{
         backgroundImage: "url(/images/Hero-bg.jpg)",
-        minHeight: "80vh",
+        minHeight: "60vh",
       }}
     >
       {/* Background overlay for better text readability */}
@@ -166,12 +166,12 @@ const Hero: React.FC = () => {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="space-y-3 md:space-y-4">
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tight text-slate-800 drop-shadow-2xl px-4" 
+            <div className="space-y-2 md:space-y-3">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight text-slate-800 drop-shadow-2xl px-4" 
                   style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
                 Serving Authentic &
               </h1>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-700 drop-shadow-xl px-4"
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-700 drop-shadow-xl px-4"
                   style={{ fontFamily: 'Poppins, sans-serif', fontWeight: '700', letterSpacing: '-0.01em' }}>
                 Creative South Indian Cuisine
               </h2>
@@ -199,7 +199,7 @@ const Hero: React.FC = () => {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[450px] w-full overflow-hidden">
+            <div className="relative h-48 sm:h-60 md:h-72 lg:h-80 w-full overflow-hidden">
               {slides.map((slide, index) => (
                 <img
                   key={slide.id}
