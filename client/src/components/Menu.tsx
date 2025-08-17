@@ -408,13 +408,13 @@ const Menu: React.FC = () => {
                       className="bg-white text-green-700 px-6 py-3 rounded-xl font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      🏪 Visit Restaurant
+                      Visit Restaurant
                     </button>
                     <button
                       className="bg-orange-500 text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                       style={{ fontFamily: "Poppins, sans-serif" }}
                     >
-                      📞 Call Now
+                      Call Now
                     </button>
                   </div>
                 </div>
