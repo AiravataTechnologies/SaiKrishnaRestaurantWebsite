@@ -139,8 +139,7 @@ const About: React.FC = () => {
 
       {/* Auto-scrolling Menu Items */}
       <div className="relative py-6 overflow-hidden">
-        <div className="relative flex">
-          <div className="flex animate-scroll space-x-4 sm:space-x-6 md:space-x-8">
+        <div className="animate-scroll space-x-4 sm:space-x-6 md:space-x-8">
             {/* First set of items */}
             {menuItems.map((item, index) => (
               <div
@@ -189,9 +188,6 @@ const About: React.FC = () => {
                 />
               </div>
             ))}
-
-
-          </div>
         </div>
       </div>
 
@@ -414,13 +410,15 @@ const About: React.FC = () => {
         }
 
         .animate-scroll {
-          animation: marquee 25s linear infinite;
+          animation: marquee 20s linear infinite;
+          display: flex;
           width: max-content;
+          will-change: transform;
         }
         
         @media (max-width: 640px) {
           .animate-scroll {
-            animation: marquee 15s linear infinite;
+            animation: marquee 6s linear infinite;
           }
         }
 
