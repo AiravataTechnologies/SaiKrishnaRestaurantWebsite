@@ -338,7 +338,7 @@ const Hero: React.FC = () => {
             }`}
           >
             <button
-              className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white px-10 sm:px-14 md:px-18 py-4 sm:py-5 md:py-6 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-xl text-lg sm:text-xl md:text-2xl"
+              className="group bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-2 border-white text-sm"
               style={{ fontFamily: "Poppins, sans-serif" }}
               onClick={() => {
                 document
@@ -346,10 +346,10 @@ const Hero: React.FC = () => {
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
             >
-              <span className="flex items-center justify-center space-x-3">
+              <span className="flex items-center justify-center space-x-2">
                 <span>View Our Menu</span>
                 <svg
-                  className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 group-hover:translate-x-1 transition-transform"
+                  className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
