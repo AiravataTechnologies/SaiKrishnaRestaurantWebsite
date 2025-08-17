@@ -77,13 +77,13 @@ const Hero: React.FC = () => {
       objectPosition: "center" as const,
     };
 
-    // Position all 5 images across the screen using consistent left positioning - moved up
+    // Position all 5 images across the screen using consistent left positioning - centered vertically
     switch (relativePosition) {
       case 0: // Far left
         return {
           ...baseStyles,
           left: "5%",
-          transform: "translateY(-80%) scale(0.7)",
+          transform: "translateY(-50%) scale(0.7)",
           zIndex: 15,
           opacity: 0.7,
           width: "clamp(150px, 18vw, 250px)",
@@ -93,7 +93,7 @@ const Hero: React.FC = () => {
         return {
           ...baseStyles,
           left: "22.5%",
-          transform: "translateY(-80%) scale(0.85)",
+          transform: "translateY(-50%) scale(0.85)",
           zIndex: 20,
           opacity: 0.85,
           width: "clamp(180px, 22vw, 280px)",
@@ -103,7 +103,7 @@ const Hero: React.FC = () => {
         return {
           ...baseStyles,
           left: "50%",
-          transform: "translateX(-50%) translateY(-80%) scale(1)",
+          transform: "translateX(-50%) translateY(-50%) scale(1)",
           zIndex: 30,
           opacity: 1,
           width: "clamp(220px, 28vw, 350px)",
@@ -113,7 +113,7 @@ const Hero: React.FC = () => {
         return {
           ...baseStyles,
           left: "77.5%",
-          transform: "translateX(-100%) translateY(-80%) scale(0.85)",
+          transform: "translateX(-100%) translateY(-50%) scale(0.85)",
           zIndex: 20,
           opacity: 0.85,
           width: "clamp(180px, 22vw, 280px)",
@@ -123,7 +123,7 @@ const Hero: React.FC = () => {
         return {
           ...baseStyles,
           left: "95%",
-          transform: "translateX(-100%) translateY(-80%) scale(0.7)",
+          transform: "translateX(-100%) translateY(-50%) scale(0.7)",
           zIndex: 15,
           opacity: 0.7,
           width: "clamp(150px, 18vw, 250px)",
