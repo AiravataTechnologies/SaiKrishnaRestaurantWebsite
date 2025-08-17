@@ -262,7 +262,7 @@ const Menu: React.FC = () => {
         name: "Steam Idli",
         price: "₹80",
         description: "Healthy, light, and easy to digest.",
-        image: "/breakfast1.jpg",
+        image: "images/breakfast1.jpg",
         rating: 4.8,
         popular: true,
       },
@@ -271,21 +271,21 @@ const Menu: React.FC = () => {
         price: "₹100",
         description:
           "Crispy outside, soft inside; pairs well with chutney/sambar.",
-        image: "/breakfast2.jpg",
+        image: "images/breakfast2.jpg",
         rating: 4.7,
       },
       {
         name: "Missal / Missal Pav",
         price: "₹90/100",
         description: "A spicy Maharashtrian favorite, filling and energetic.",
-        image: "/breakfast3.jpg",
+        image: "images/breakfast3.jpg",
         rating: 4.6,
       },
       {
         name: "Dahi Idli",
         price: "₹110",
         description: "Refreshing, cool, and great for mornings.",
-        image: "/breakfast4.jpg",
+        image: "images/breakfast4.jpg",
         rating: 4.5,
       },
     ],
@@ -294,7 +294,7 @@ const Menu: React.FC = () => {
         name: "Paneer Butter Masala",
         price: "₹255",
         description: "Rich, creamy, and classic.",
-        image: "/lunch1.jpg",
+        image: "images/lunch1.jpg",
         rating: 4.9,
         popular: true,
       },
@@ -302,21 +302,21 @@ const Menu: React.FC = () => {
         name: "Veg. Diwani Handi",
         price: "₹295",
         description: "A royal mixed-veg preparation with spices.",
-        image: "/lunch2.jpg",
+        image: "images/lunch2.jpg",
         rating: 4.8,
       },
       {
         name: "Veg. Dum Biryani",
         price: "₹270",
         description: "Slow-cooked with spices, aromatic and filling.",
-        image: "/lunch3.jpg",
+        image: "images/lunch3.jpg",
         rating: 4.7,
       },
       {
         name: "Jeera Rice",
         price: "₹170",
         description: "Simple, flavorful, and pairs well with curries.",
-        image: "/lunch4.jpg",
+        image: "images/lunch4.jpg",
         rating: 4.6,
       },
     ],
@@ -325,7 +325,7 @@ const Menu: React.FC = () => {
         name: "Veg. Pakoda",
         price: "₹110",
         description: "A simple, light classic combo.",
-        image: "/snacks1.jpg",
+        image: "images/snacks1.jpg",
         rating: 4.9,
         popular: true,
       },
@@ -333,21 +333,21 @@ const Menu: React.FC = () => {
         name: "Paneer Pakoda",
         price: "₹145",
         description: "Crispy and filling.",
-        image: "/snacks2.jpg",
+        image: "images/snacks2.jpg",
         rating: 4.7,
       },
       {
         name: "Ginger Tea",
         price: "₹50",
         description: "Perfect to pair with pakodas.",
-        image: "/snacks3.jpg",
+        image: "images/snacks3.jpg",
         rating: 4.5,
       },
       {
         name: "Veg. Sandwich",
         price: "₹75",
         description: "Fresh bread filled with vegetables and chutney.",
-        image: "/snacks4.jpg",
+        image: "images/snacks4.jpg",
         rating: 4.4,
       },
     ],
@@ -485,7 +485,7 @@ const Menu: React.FC = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="mt-16 text-center">
+        {/* <div className="mt-16 text-center">
           <div className="bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">Order Online Now!</h3>
             <p className="text-lg mb-6">
@@ -500,7 +500,7 @@ const Menu: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
