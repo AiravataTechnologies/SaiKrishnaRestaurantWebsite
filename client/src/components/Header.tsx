@@ -60,7 +60,7 @@ const Header: React.FC = () => {
           <div className="flex items-center space-x-6">
             <div className="flex items-center space-x-2 hover:text-orange-200 transition-colors">
               <Phone className="w-4 h-4" />
-              <span className="font-medium">022 2386 7544 | 90040 81590</span>
+              <span className="font-medium">+91 90049 89629</span>
             </div>
             <div className="flex items-center space-x-2 hover:text-orange-200 transition-colors">
               <Mail className="w-4 h-4" />
@@ -91,18 +91,18 @@ const Header: React.FC = () => {
           isHeaderVisible
             ? "transform translate-y-0 opacity-100"
             : "transform -translate-y-full opacity-0"
-        } ${
-          isVisible 
-            ? "animate-in slide-in-from-top-5 duration-700" 
-            : ""
-        }`}
+        } ${isVisible ? "animate-in slide-in-from-top-5 duration-700" : ""}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 py-2">
             {/* Logo Section */}
-            <div className={`flex items-center -ml-2 transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-            }`}>
+            <div
+              className={`flex items-center -ml-2 transition-all duration-700 delay-200 ${
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-4"
+              }`}
+            >
               <div className="relative">
                 <img
                   src="/images/logo.png"
@@ -116,9 +116,13 @@ const Header: React.FC = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <nav className={`hidden md:flex items-center space-x-1 transition-all duration-700 delay-400 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}>
+            <nav
+              className={`hidden md:flex items-center space-x-1 transition-all duration-700 delay-400 ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4"
+              }`}
+            >
               {[
                 { id: "home", label: "Home" },
                 { id: "about", label: "About Us" },
@@ -143,7 +147,9 @@ const Header: React.FC = () => {
             {/* Mobile menu button */}
             <button
               className={`md:hidden p-3 rounded-lg hover:bg-gray-100 transition-all duration-700 delay-600 ${
-                isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
+                isVisible
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-4"
               }`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
