@@ -338,7 +338,7 @@ const Hero: React.FC = () => {
             }`}
           >
             <button
-              className="group bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-2 border-white text-sm"
+              className="group bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-2 border-white text-sm"
               style={{ fontFamily: "Poppins, sans-serif" }}
               onClick={() => {
                 document
