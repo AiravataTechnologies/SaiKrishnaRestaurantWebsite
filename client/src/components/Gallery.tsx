@@ -30,35 +30,35 @@ const Gallery = () => {
 
   const galleryItems = [
     {
-      url: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400",
+      url: "public/images/g1.jpg",
       title: "Delicious Pizza",
     },
     {
-      url: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
+      url: "public/images/g2.jpg",
       title: "Restaurant Interior",
     },
     {
-      url: "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=400",
+      url: "public/images/g3.jpg",
       title: "Chef at Work",
     },
     {
-      url: "https://images.pexels.com/photos/2788792/pexels-photo-2788792.jpeg?auto=compress&cs=tinysrgb&w=400",
-      title: "Bartender",
+      url: "public/images/g9.jpg",
+      title: "Traditional Dishes",
     },
     {
-      url: "https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=400",
+      url: "public/images/g5.jpg",
       title: "Dessert Plate",
     },
     {
-      url: "https://images.pexels.com/photos/1639562/pexels-photo-1639562.jpeg?auto=compress&cs=tinysrgb&w=400",
+      url: "public/images/g6.jpg",
       title: "Burger & Fries",
     },
     {
-      url: "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=400",
+      url: "public/images/g7.jpg",
       title: "Fine Dining",
     },
     {
-      url: "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=400",
+      url: "public/images/g8.jpg",
       title: "Tasty Dish",
     },
   ];
@@ -95,7 +95,7 @@ const Gallery = () => {
         >
           {/* Heading */}
           <div
-            className={`text-center mb-8 sm:mb-12 lg:mb-16 transition-all duration-1000 ease-out delay-300 ${
+            className={`text-center mb-6 sm:mb-8 lg:mb-10 transition-all duration-1000 ease-out delay-300 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
