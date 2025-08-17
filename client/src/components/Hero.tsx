@@ -166,11 +166,11 @@ const Hero: React.FC = () => {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="space-y-2 md:space-y-3">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight gradient-text drop-shadow-2xl px-4">
+            <div className="space-y-1 md:space-y-2">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight gradient-text px-4">
                 Serving Authentic &
               </h1>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold gradient-text drop-shadow-xl px-4">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight gradient-text px-4">
                 Creative Vegetarian Cuisine
               </h2>
             </div>

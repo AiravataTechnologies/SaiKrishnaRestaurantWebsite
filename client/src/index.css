@@ -67,11 +67,12 @@ html {
 /* Gradient text styles */
 .gradient-text {
   font-family: "Merriweather", serif;
-  background: linear-gradient(to right, #f97316, #ea580c, #ef4444);
+  background: linear-gradient(to right, #059669, #10b981, #f97316, #ea580c, #dc2626);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  font-weight: 700;
 }
 
 /* Custom scrollbar */
