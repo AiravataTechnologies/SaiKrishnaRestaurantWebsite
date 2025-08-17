@@ -183,6 +183,35 @@ const About: React.FC = () => {
                     transformStyle: "preserve-3d",
                     backfaceVisibility: "hidden",
                   }}
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${item.image}`);
+                  }}
+                />
+              </div>
+            ))}
+
+            {/* Third set for mobile to ensure all images show */}
+            {menuItems.map((item, index) => (
+              <div
+                key={`third-${index}`}
+                className="flex-shrink-0 relative group transform transition-all duration-500 hover:scale-110 sm:hidden"
+                style={{
+                  filter:
+                    "drop-shadow(0 20px 25px rgba(0, 0, 0, 0.15)) drop-shadow(0 8px 10px rgba(0, 0, 0, 0.1))",
+                  transform: "perspective(1000px) rotateY(-2deg) rotateX(2deg)",
+                }}
+              >
+                <img
+                  src={`/images/${item.image}`}
+                  alt={item.name}
+                  className="w-48 h-32 object-contain transform transition-all duration-500"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    backfaceVisibility: "hidden",
+                  }}
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${item.image}`);
+                  }}
                 />
               </div>
             ))}
@@ -414,7 +443,7 @@ const About: React.FC = () => {
         
         @media (max-width: 640px) {
           .animate-scroll {
-            animation: scroll 8s linear infinite;
+            animation: scroll 12s linear infinite;
           }
         }
 
