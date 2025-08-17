@@ -76,14 +76,14 @@ const About: React.FC = () => {
   }, []);
 
   const menuItems = [
-    { name: "Masala Dosa", image: "hero1.png", price: "₹120" },
-    { name: "Idli Sambar", image: "hero2.png", price: "₹80" },
-    { name: "Vada Pav", image: "hero3.png", price: "₹60" },
-    { name: "Filter Coffee", image: "hero1.png", price: "₹40" },
-    { name: "Uthappam", image: "hero2.png", price: "₹100" },
-    { name: "Medu Vada", image: "hero3.png", price: "₹70" },
-    { name: "Rava Kesari", image: "hero1.png", price: "₹90" },
-    { name: "Coconut Rice", image: "hero2.png", price: "₹110" },
+    { name: "Masala Dosa", image: "ab1.png", price: "₹120" },
+    { name: "Idli Sambar", image: "ab2.png", price: "₹80" },
+    { name: "Vada Pav", image: "ab3.png", price: "₹60" },
+    { name: "Filter Coffee", image: "ab4.png", price: "₹40" },
+    { name: "Uthappam", image: "ab5.png", price: "₹100" },
+    { name: "Medu Vada", image: "ab6.png", price: "₹70" },
+    { name: "Rava Kesari", image: "ab7.png", price: "₹90" },
+    { name: "Coconut Rice", image: "ab8.png", price: "₹110" },
   ];
 
   const features = [
