@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
     },
     {
       id: 4,
-      image: "/images/hero5.png",
+      image: "/images/ab2.png",
       alt: "Traditional South Indian Cuisine",
       title: "Authentic Meal",
     },
