@@ -125,23 +125,6 @@ const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
-
-            {/* We Are Section */}
-            <div className="bg-orange-50 p-4 sm:p-6 rounded-xl border border-orange-200">
-              <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">
-                We Are Available On:
-              </h4>
-              <div className="flex flex-wrap gap-3 sm:gap-4">
-                <button className="bg-orange-500 hover:bg-orange-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors duration-300 flex items-center space-x-2 text-sm sm:text-base">
-                  <span>🛵</span>
-                  <span>Swiggy</span>
-                </button>
-                <button className="bg-red-500 hover:bg-red-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold transition-colors duration-300 flex items-center space-x-2 text-sm sm:text-base">
-                  <span>🍽️</span>
-                  <span>Zomato</span>
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* Google Maps */}
