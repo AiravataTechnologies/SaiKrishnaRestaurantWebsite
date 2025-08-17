@@ -35,17 +35,8 @@ const Footer: React.FC = () => {
               <img
                 src={saiKrishnaLogo}
                 alt="Sai Krishna Restaurant Logo"
-                className="w-12 h-12 object-contain"
+                className="w-15 h-16 object-contain"
               />
-              <div>
-                <div className="text-2xl font-bold">
-                  <span className="text-white">SAI</span>
-                  <span className="text-orange-400 ml-1">KRISHNA</span>
-                </div>
-                <div className="text-xs text-gray-300 tracking-wider">
-                  R E S T A U R A N T
-                </div>
-              </div>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
               A 43-year old family-run restaurant serving authentic and creative
