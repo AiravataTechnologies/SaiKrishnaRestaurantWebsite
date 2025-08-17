@@ -102,7 +102,7 @@ const Contact: React.FC = () => {
                   Email
                 </h3>
                 <p className="text-gray-600 text-sm sm:text-base break-all">
-                  info@srikrishnarestaurant.com
+                  info@saikrishnarestaurant.com
                 </p>
               </div>
             </div>
