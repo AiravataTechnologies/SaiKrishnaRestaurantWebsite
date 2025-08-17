@@ -32,7 +32,7 @@ const Blog: React.FC = () => {
     {
       title: "The Art of Making Perfect South Indian Dosa",
       excerpt:
-        "Discover the secrets behind our crispy, golden dosas that have been perfected over 43 years of culinary excellence.",
+        "Discover the secrets behind our crispy, golden dosas that have been perfected over 10years of culinary excellence.",
       image: blog1Image,
       date: "March 15, 2024",
       author: "Chef Venkatesh",
@@ -63,12 +63,12 @@ const Blog: React.FC = () => {
           <h3>Our Secret Tips</h3>
           <p>What sets our dosas apart is the attention to detail. We never compromise on the quality of ingredients, always use filtered water, and maintain our tawas with traditional methods. The coconut chutney is ground fresh every morning, and our sambar recipe has remained unchanged since our founding.</p>
 
-          <p>Visit Sai Krishna Restaurant to experience dosas made with 43 years of love, tradition, and expertise. Each dosa tells the story of our culinary heritage.</p>
+          <p>Visit Sai Krishna Restaurant to experience dosas made with 10years of love, tradition, and expertise. Each dosa tells the story of our culinary heritage.</p>
         </div>
       `,
     },
     {
-      title: "43 Years of Culinary Legacy: Our Journey",
+      title: "10Years of Culinary Legacy: Our Journey",
       excerpt:
         "From a small family restaurant to Mumbai's beloved South Indian destination - read about our incredible journey.",
       image: blog2Image,
@@ -106,7 +106,7 @@ const Blog: React.FC = () => {
           </ul>
 
           <h3>Looking Forward</h3>
-          <p>As we look toward the future, our commitment remains unchanged: serving authentic South Indian cuisine with love, respect, and tradition. Every meal we serve carries 43 years of heritage, and every customer becomes part of our extended family.</p>
+          <p>As we look toward the future, our commitment remains unchanged: serving authentic South Indian cuisine with love, respect, and tradition. Every meal we serve carries 10years of heritage, and every customer becomes part of our extended family.</p>
 
           <p>Thank you for being part of our journey. Here's to many more years of serving Mumbai with love and authentic flavors.</p>
         </div>
@@ -214,7 +214,7 @@ const Blog: React.FC = () => {
       content: `
         <div class="prose max-w-none">
           <h2>Festivals Through Food: Our Celebration Heritage</h2>
-          <p>At Sai Krishna Restaurant, festivals are more than dates on a calendar – they're opportunities to showcase the rich tapestry of South Indian culinary traditions. Each festival brings its own flavors, preparations, and stories that we've been sharing with Mumbai for 43 years.</p>
+          <p>At Sai Krishna Restaurant, festivals are more than dates on a calendar – they're opportunities to showcase the rich tapestry of South Indian culinary traditions. Each festival brings its own flavors, preparations, and stories that we've been sharing with Mumbai for 10years.</p>
 
           <h3>Diwali: The Festival of Lights and Sweets</h3>
           <p>During Diwali, our kitchen transforms into a sweet-making haven. We prepare traditional South Indian sweets that have been part of Diwali celebrations for centuries:</p>

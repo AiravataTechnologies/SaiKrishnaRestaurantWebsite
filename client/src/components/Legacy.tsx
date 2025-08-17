@@ -22,7 +22,7 @@ const Legacy: React.FC = () => {
 
             <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
               <p>
-                A revamped 43-year old family-run restaurant located in Nana Chowk, 
+                A revamped 10-year old family-run restaurant located in Nana Chowk, 
                 Grant Road, serving authentic and creative South Indian cuisine in a 
                 comforting atmosphere. Also, serving incredibly rich North Indian and 
                 Chinese dishes.
@@ -42,7 +42,7 @@ const Legacy: React.FC = () => {
 
             <div className="mt-12 flex items-center space-x-8">
               <div className="text-center">
-                <div className="text-4xl font-bold text-orange-500">43+</div>
+                <div className="text-4xl font-bold text-orange-500">10+</div>
                 <div className="text-sm text-gray-600 font-medium">Years Legacy</div>
               </div>
               <div className="text-center">

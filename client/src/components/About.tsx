@@ -257,7 +257,7 @@ const About: React.FC = () => {
                     className="font-bold text-green-700"
                     style={{ fontFamily: "Merriweather, serif" }}
                   >
-                    43 years ago
+                    10years ago
                   </span>
                   , Sai Krishna Restaurant has been serving authentic South
                   Indian cuisine to food lovers who appreciate traditional

@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              A 43-year old family-run restaurant serving authentic and creative
+              A 10-year old family-run restaurant serving authentic and creative
               South Indian cuisine in a comforting atmosphere. Experience the
               true taste of South India with our traditional recipes and warm
               hospitality.
