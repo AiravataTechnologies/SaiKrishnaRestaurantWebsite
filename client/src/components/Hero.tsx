@@ -167,13 +167,11 @@ const Hero: React.FC = () => {
             }`}
           >
             <div className="space-y-2 md:space-y-3">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight text-slate-800 drop-shadow-2xl px-4" 
-                  style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight gradient-text drop-shadow-2xl px-4">
                 Serving Authentic &
               </h1>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-slate-700 drop-shadow-xl px-4"
-                  style={{ fontFamily: 'Poppins, sans-serif', fontWeight: '700', letterSpacing: '-0.01em' }}>
-                Creative South Indian Cuisine
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold gradient-text drop-shadow-xl px-4">
+                Creative Vegetarian Cuisine
               </h2>
             </div>
 
@@ -265,7 +263,7 @@ const Hero: React.FC = () => {
               className="group border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white px-8 md:px-10 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 hover:scale-105 shadow-lg bg-white/80 backdrop-blur-sm"
               onClick={() => {
                 document
-                  .getElementById("contact")
+                  .getElementById("online-ordering")
                   ?.scrollIntoView({ behavior: "smooth" });
               }}
             >
@@ -280,7 +278,7 @@ const Hero: React.FC = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 8M7 13l2.5 8m0 0h8.5M7 21a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+                    d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z"
                   />
                 </svg>
                 <span className="text-sm md:text-base">Order Online</span>

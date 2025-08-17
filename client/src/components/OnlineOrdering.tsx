@@ -23,7 +23,7 @@ const OnlineOrdering: React.FC = () => {
     return () => observer.disconnect();
   }, []);
   return (
-    <section ref={sectionRef} className="py-12 sm:py-16 lg:py-20 bg-green-50">
+    <section ref={sectionRef} id="online-ordering" className="py-12 sm:py-16 lg:py-20 bg-green-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className={`text-center mb-12 sm:mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
