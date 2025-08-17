@@ -320,7 +320,7 @@ const Hero: React.FC = () => {
                   onClick={() => setCurrentSlide(index)}
                   className={`transition-all duration-300 ${
                     index === currentSlide
-                      ? "w-14 sm:w-16 h-4 bg-orange-500 rounded-full shadow-lg"
+                      ? "w-4 h-4 bg-orange-500 rounded-full shadow-lg scale-125"
                       : "w-4 h-4 bg-gray-400 rounded-full hover:bg-orange-300"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
