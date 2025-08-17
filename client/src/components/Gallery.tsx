@@ -30,35 +30,35 @@ const Gallery = () => {
 
   const galleryItems = [
     {
-      url: "public/images/g1.jpg",
+      url: "images/g1.jpg",
       title: "Delicious Pizza",
     },
     {
-      url: "public/images/g2.jpg",
+      url: "images/g2.jpg",
       title: "Restaurant Interior",
     },
     {
-      url: "public/images/g3.jpg",
+      url: "images/g3.jpg",
       title: "Chef at Work",
     },
     {
-      url: "public/images/g9.jpg",
+      url: "images/g9.jpg",
       title: "Traditional Dishes",
     },
     {
-      url: "public/images/g5.jpg",
+      url: "images/g5.jpg",
       title: "Dessert Plate",
     },
     {
-      url: "public/images/g6.jpg",
+      url: "images/g6.jpg",
       title: "Burger & Fries",
     },
     {
-      url: "public/images/g7.jpg",
+      url: "images/g7.jpg",
       title: "Fine Dining",
     },
     {
-      url: "public/images/g8.jpg",
+      url: "images/g8.jpg",
       title: "Tasty Dish",
     },
   ];
