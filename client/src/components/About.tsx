@@ -140,7 +140,7 @@ const About: React.FC = () => {
       {/* Auto-scrolling Menu Items */}
       <div className="relative py-6 overflow-hidden">
         <div className="relative">
-          <div className="flex animate-scroll space-x-8">
+          <div className="flex animate-scroll space-x-4 sm:space-x-6 md:space-x-8">
             {/* First set of items */}
             {menuItems.map((item, index) => (
               <div
@@ -155,7 +155,7 @@ const About: React.FC = () => {
                 <img
                   src={`/images/${item.image}`}
                   alt={item.name}
-                  className="w-56 h-40 sm:w-64 sm:h-48 object-contain transform transition-all duration-500"
+                  className="w-48 h-32 sm:w-56 sm:h-40 md:w-64 md:h-48 object-contain transform transition-all duration-500"
                   style={{
                     transformStyle: "preserve-3d",
                     backfaceVisibility: "hidden",
@@ -178,7 +178,7 @@ const About: React.FC = () => {
                 <img
                   src={`/images/${item.image}`}
                   alt={item.name}
-                  className="w-56 h-40 sm:w-64 sm:h-48 object-contain transform transition-all duration-500"
+                  className="w-48 h-32 sm:w-56 sm:h-40 md:w-64 md:h-48 object-contain transform transition-all duration-500"
                   style={{
                     transformStyle: "preserve-3d",
                     backfaceVisibility: "hidden",
@@ -409,7 +409,13 @@ const About: React.FC = () => {
         }
 
         .animate-scroll {
-          animation: scroll 15s linear infinite;
+          animation: scroll 10s linear infinite;
+        }
+        
+        @media (max-width: 640px) {
+          .animate-scroll {
+            animation: scroll 8s linear infinite;
+          }
         }
 
         .animate-scroll:hover {
