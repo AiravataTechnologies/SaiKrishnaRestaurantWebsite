@@ -287,7 +287,7 @@ const About: React.FC = () => {
                       lineHeight: "1",
                     }}
                   >
-                    <AnimatedCounter end={43} suffix="+" />
+                    <AnimatedCounter end={10} suffix="+" />
                   </div>
                   <div
                     className="text-sm text-gray-600 font-medium"
