@@ -114,104 +114,27 @@ const Contact: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-          {/* Contact Information */}
-          <div
-            className={`space-y-6 sm:space-y-8 transition-all duration-1000 delay-300 ${
-              isVisible
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-8"
-            }`}
-          >
-            <div className="flex items-start space-x-3 sm:space-x-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
-              </div>
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                  Address
-                </h3>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
-                  Ground Floor, Plot No 31, Mahakali Caves Rd,
-                  <br />
-                  opp. Hanuman Mandir, Dhawalgiri,
-                  <br />
-                  Sher E Punjab Colony, Andheri East,
-                  <br />
-                  Mumbai, Maharashtra 400093
-                </p>
-              </div>
+        {/* Table Reservation Form */}
+        <div
+          className={`bg-gradient-to-br from-green-50 to-orange-50 rounded-2xl p-6 sm:p-8 shadow-lg border border-green-100 transition-all duration-1000 delay-300 mb-12 lg:mb-16 ${
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-8"
+          }`}
+        >
+          <div className="text-center mb-6">
+            <div className="flex justify-center mb-3">
+              <div className="text-orange-500 text-xl sm:text-2xl">🍽️ ✦ 🍽️</div>
             </div>
-
-            <div className="flex items-start space-x-3 sm:space-x-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
-              </div>
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                  Phone
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base">
-                  +91 90049 89629
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3 sm:space-x-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
-              </div>
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                  Email
-                </h3>
-                <p className="text-gray-600 text-sm sm:text-base break-all">
-                  info@saikrishnarestaurant.com
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start space-x-3 sm:space-x-4">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
-              </div>
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
-                  Hours
-                </h3>
-                <div className="text-gray-600 space-y-1 text-sm sm:text-base">
-                  <p>
-                    <strong>Daily:</strong> 9:00 AM - 12:00 AM
-                  </p>
-                  <p>
-                    <em>Open 7 days a week</em>
-                  </p>
-                </div>
-              </div>
-            </div>
+            <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+              Table Reservation
+            </h3>
+            <p className="text-gray-600 text-sm sm:text-base">
+              Reserve your table for an unforgettable dining experience
+            </p>
           </div>
 
-          {/* Table Reservation Form */}
-          <div
-            className={`bg-gradient-to-br from-green-50 to-orange-50 rounded-2xl p-6 sm:p-8 shadow-lg border border-green-100 transition-all duration-1000 delay-500 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            }`}
-          >
-            <div className="text-center mb-6">
-              <div className="flex justify-center mb-3">
-                <div className="text-orange-500 text-xl sm:text-2xl">🍽️ ✦ 🍽️</div>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-                Table Reservation
-              </h3>
-              <p className="text-gray-600 text-sm sm:text-base">
-                Reserve your table for an unforgettable dining experience
-              </p>
-            </div>
-
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
               {/* Name Field */}
               <div className="space-y-2">
                 <label className="flex items-center text-sm font-semibold text-gray-700">
@@ -373,12 +296,90 @@ const Contact: React.FC = () => {
                   ❌ Failed to send reservation. Please try again or call us directly.
                 </div>
               )}
-            </form>
+          </form>
+        </div>
+
+        {/* Contact Information and Map Section */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+          {/* Contact Information */}
+          <div
+            className={`space-y-6 sm:space-y-8 transition-all duration-1000 delay-500 ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-8"
+            }`}
+          >
+            <div className="flex items-start space-x-3 sm:space-x-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                  Address
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
+                  Ground Floor, Plot No 31, Mahakali Caves Rd,
+                  <br />
+                  opp. Hanuman Mandir, Dhawalgiri,
+                  <br />
+                  Sher E Punjab Colony, Andheri East,
+                  <br />
+                  Mumbai, Maharashtra 400093
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3 sm:space-x-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                  Phone
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  +91 90049 89629
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3 sm:space-x-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                  Email
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base break-all">
+                  info@saikrishnarestaurant.com
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-3 sm:space-x-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" />
+              </div>
+              <div>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                  Hours
+                </h3>
+                <div className="text-gray-600 space-y-1 text-sm sm:text-base">
+                  <p>
+                    <strong>Daily:</strong> 9:00 AM - 12:00 AM
+                  </p>
+                  <p>
+                    <em>Open 7 days a week</em>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Google Maps */}
           <div
-            className={`relative mt-8 lg:mt-0 transition-all duration-1000 delay-600 ${
+            className={`relative mt-8 lg:mt-0 transition-all duration-1000 delay-700 ${
               isVisible
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 translate-x-8"
