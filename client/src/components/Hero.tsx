@@ -343,6 +343,11 @@ const Hero: React.FC = () => {
                 className="group bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-2 border-white text-sm"
                 style={{ fontFamily: "Poppins, sans-serif" }}
                 data-testid="button-view-menu-hero"
+                onClick={() => {
+                  setTimeout(() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }, 100);
+                }}
               >
                 <span className="flex items-center justify-center space-x-2">
                   <span>View Our Menu</span>
