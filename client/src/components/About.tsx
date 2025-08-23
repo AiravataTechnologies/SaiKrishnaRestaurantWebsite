@@ -1,7 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Award, Users, Clock, Heart, Star } from "lucide-react";
 
-const AnimatedCounter = ({ end, duration = 2000, suffix = "" }: { end: number; duration?: number; suffix?: string }) => {
+const AnimatedCounter = ({
+  end,
+  duration = 2000,
+  suffix = "",
+}: {
+  end: number;
+  duration?: number;
+  suffix?: string;
+}) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const elementRef = useRef(null);
@@ -410,7 +418,7 @@ const About: React.FC = () => {
         }
 
         .animate-scroll {
-          animation: marquee 20s linear infinite;
+          animation: marquee 40s linear infinite;
           display: flex;
           width: max-content;
           will-change: transform;
@@ -418,7 +426,7 @@ const About: React.FC = () => {
 
         @media (max-width: 640px) {
           .animate-scroll {
-            animation: marquee 15s linear infinite;
+            animation: marquee 30s linear infinite;
           }
         }
 
