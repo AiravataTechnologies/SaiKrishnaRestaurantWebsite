@@ -50,7 +50,7 @@ const Header: React.FC = () => {
     setIsMenuOpen(false);
     
     // Handle scrolling for home page sections
-    if (location === "/" && (sectionId === "home" || sectionId === "about" || sectionId === "videos" || sectionId === "blog")) {
+    if (location === "/" && (sectionId === "home" || sectionId === "about" || sectionId === "videos")) {
       const section = document.getElementById(sectionId);
       if (section) {
         section.scrollIntoView({ behavior: "smooth" });
@@ -198,11 +198,10 @@ const Header: React.FC = () => {
                 </button>
               </Link>
 
-              <Link to="/">
+              <Link to="/blog">
                 <button
-                  onClick={() => handleNavigation("blog")}
                   className={`relative px-4 py-2 hover:text-green-700 transition-all duration-300 font-medium text-sm group ${
-                    location === "/" ? "text-green-700" : "text-gray-700"
+                    location === "/blog" ? "text-green-700" : "text-gray-700"
                   }`}
                   data-testid="nav-blog"
                 >
@@ -294,9 +293,8 @@ const Header: React.FC = () => {
                   </button>
                 </Link>
 
-                <Link to="/">
+                <Link to="/blog">
                   <button
-                    onClick={() => handleNavigation("blog")}
                     className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:text-green-700 transition-all duration-300 font-medium border-l-4 border-transparent hover:border-green-500"
                     data-testid="mobile-nav-blog"
                   >
