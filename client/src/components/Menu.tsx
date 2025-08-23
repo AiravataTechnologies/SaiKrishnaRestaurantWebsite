@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Star } from "lucide-react";
+import { Star, Download, Eye, FileText } from "lucide-react";
 
 const Menu: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState("breakfast");
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -24,180 +23,98 @@ const Menu: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  const menuItems = {
-    breakfast: [
-      {
-        name: "Steam Idli",
-        price: "₹80",
-        description: "Healthy, light, and easy to digest.",
-        image: "images/breakfast1.jpg",
-        rating: 4.8,
-        popular: true,
-      },
-      {
-        name: "Medu Wada",
-        price: "₹100",
-        description:
-          "Crispy outside, soft inside; pairs well with chutney/sambar.",
-        image: "images/breakfast2.jpg",
-        rating: 4.7,
-      },
-      {
-        name: "Missal / Missal Pav",
-        price: "₹90/100",
-        description: "A spicy Maharashtrian favorite, filling and energetic.",
-        image: "images/breakfast3.jpg",
-        rating: 4.6,
-      },
-      {
-        name: "Dahi Idli",
-        price: "₹110",
-        description: "Refreshing, cool, and great for mornings.",
-        image: "images/breakfast4.jpg",
-        rating: 4.5,
-      },
-    ],
-    pizza: [
-      {
-        name: "Margherita Pizza",
-        price: "₹250",
-        description: "Fresh mozzarella, tomato sauce, and basil.",
-        image: "images/pizza1.jpg",
-        rating: 4.8,
-        popular: true,
-      },
-      {
-        name: "Veggie Supreme",
-        price: "₹320",
-        description: "Bell peppers, onions, mushrooms, and olives.",
-        image: "images/pizza2.jpg",
-        rating: 4.7,
-      },
-      {
-        name: "Paneer Tikka Pizza",
-        price: "₹380",
-        description: "Spiced paneer with capsicum and onions.",
-        image: "images/pizza3.jpg",
-        rating: 4.6,
-      },
-      {
-        name: "Corn & Cheese",
-        price: "₹290",
-        description: "Sweet corn kernels with extra cheese.",
-        image: "images/pizza4.jpg",
-        rating: 4.5,
-      },
-    ],
-    mumbaiChat: [
-      {
-        name: "Pani Puri",
-        price: "₹60",
-        description: "Crispy puris with tangy flavored water.",
-        image: "images/chat1.jpg",
-        rating: 4.9,
-        popular: true,
-      },
-      {
-        name: "Bhel Puri",
-        price: "₹80",
-        description: "Mumbai's favorite street snack mix.",
-        image: "images/chat2.jpg",
-        rating: 4.8,
-      },
-      {
-        name: "Sev Puri",
-        price: "₹70",
-        description: "Crispy base topped with chutneys and sev.",
-        image: "images/chat3.jpg",
-        rating: 4.7,
-      },
-      {
-        name: "Dahi Puri",
-        price: "₹85",
-        description: "Sweet yogurt topped crispy puri delight.",
-        image: "images/chat4.jpg",
-        rating: 4.6,
-      },
-    ],
-    starters: [
-      {
-        name: "Paneer Tikka",
-        price: "₹180",
-        description: "Grilled cottage cheese with spices.",
-        image: "images/starter1.jpg",
-        rating: 4.8,
-        popular: true,
-      },
-      {
-        name: "Veg Manchurian",
-        price: "₹160",
-        description: "Indo-Chinese vegetable balls in sauce.",
-        image: "images/starter2.jpg",
-        rating: 4.7,
-      },
-      {
-        name: "Crispy Corn",
-        price: "₹140",
-        description: "Golden fried corn kernels with spices.",
-        image: "images/starter3.jpg",
-        rating: 4.6,
-      },
-      {
-        name: "Spring Rolls",
-        price: "₹150",
-        description: "Crispy rolls filled with fresh vegetables.",
-        image: "images/starter4.jpg",
-        rating: 4.5,
-      },
-    ],
-    biryani: [
-      {
-        name: "Veg Dum Biryani",
-        price: "₹270",
-        description: "Slow-cooked aromatic rice with vegetables.",
-        image: "images/biryani1.jpg",
-        rating: 4.9,
-        popular: true,
-      },
-      {
-        name: "Paneer Biryani",
-        price: "₹320",
-        description: "Fragrant basmati rice with spiced paneer.",
-        image: "images/biryani2.jpg",
-        rating: 4.8,
-      },
-      {
-        name: "Mushroom Biryani",
-        price: "₹290",
-        description: "Earthy mushrooms layered with spiced rice.",
-        image: "images/biryani3.jpg",
-        rating: 4.7,
-      },
-      {
-        name: "Hyderabadi Biryani",
-        price: "₹350",
-        description: "Traditional Hyderabadi style preparation.",
-        image: "images/biryani4.jpg",
-        rating: 4.8,
-      },
-    ],
+  // Menu items based on actual images in /client/public/images/Menu
+  const menuItems = [
+    { name: "Aloo Tandoori", image: "images/Menu/Aloo Tandoori.JPG" },
+    { name: "Aloo Tikka", image: "images/Menu/Aloo Tikka.JPG" },
+    { name: "Butter Kulcha", image: "images/Menu/Butter Kulcha.JPG" },
+    { name: "Butter Paratha", image: "images/Menu/Butter Paratha.JPG" },
+    { name: "Butter Roti", image: "images/Menu/Butter Roti.JPG" },
+    { name: "Caramel Custard", image: "images/Menu/Caramel Custard.JPG" },
+    { name: "Chana Masala", image: "images/Menu/Chana Masala.JPG" },
+    { name: "Cheese Garlic Bread", image: "images/Menu/Cheese Garlic Bread.JPG" },
+    { name: "Cheese Masala Pav", image: "images/Menu/Cheese Masala Pav.JPG" },
+    { name: "Cheese Pav Bhaji", image: "images/Menu/Cheese Pav Bhaji.JPG" },
+    { name: "Chilly Dosa", image: "images/Menu/Chilly Dosa.JPG" },
+    { name: "Corn Methi Tikka", image: "images/Menu/Corn Methi Tikka.JPG" },
+    { name: "Cream Of Mushroom Soup", image: "images/Menu/Cream Of Mushroom Soup.JPG" },
+    { name: "Cream Of Palak Soup", image: "images/Menu/Cream Of Palak Soup.JPG" },
+    { name: "Cream Of Tomato Soup", image: "images/Menu/Cream Of Tomato Soup.JPG" },
+    { name: "Dal Fry", image: "images/Menu/Dal Fry.JPG" },
+    { name: "Dal Khichdi Tadka", image: "images/Menu/Dal Khichdi Tadka.JPG" },
+    { name: "Dal Khichdi", image: "images/Menu/Dal Khichdi.JPG" },
+    { name: "Dal Makhani", image: "images/Menu/Dal Makhani.JPG" },
+    { name: "Dal Tadka", image: "images/Menu/Dal Tadka.JPG" },
+    { name: "Garlic Naan", image: "images/Menu/Garlic Naan.JPG" },
+    { name: "Gulab Jamun", image: "images/Menu/Gulab Jamun.JPG" },
+    { name: "Hara Bhara Kebab", image: "images/Menu/Hara Bhara Kebab.JPG" },
+    { name: "Idli Wada", image: "images/Menu/Idli Wada.JPG" },
+    { name: "Jeera Rice", image: "images/Menu/Jeera Rice.JPG" },
+    { name: "Manchurian Fried Rice", image: "images/Menu/Manchurian Fried Rice.JPG" },
+    { name: "Masala Dosa", image: "images/Menu/Masala Dosa.JPG" },
+    { name: "Masala Pav", image: "images/Menu/Masala Pav.JPG" },
+    { name: "Medu Vada", image: "images/Menu/Medu Vada.JPG" },
+    { name: "Mosambi Juice", image: "images/Menu/Mosambi Juice.JPG" },
+    { name: "Mushroom Tandoori", image: "images/Menu/Mushroom Tandoori.JPG" },
+    { name: "Mysore Masala Dosa", image: "images/Menu/Mysore Masala Dosa.JPG" },
+    { name: "Naan", image: "images/Menu/Naan.JPG" },
+    { name: "Onion Rava Sada Dosa", image: "images/Menu/Onion Rava Sada Dosa.JPG" },
+    { name: "Onion Uttapam", image: "images/Menu/Onion Uttapam.JPG" },
+    { name: "Paneer Butter Masala", image: "images/Menu/Paneer Butter Masala.JPG" },
+    { name: "Paneer Chilli", image: "images/Menu/Paneer Chilli.JPG" },
+    { name: "Paneer Crispy", image: "images/Menu/Paneer Crispy.JPG" },
+    { name: "Paneer Kadai", image: "images/Menu/Paneer Kadai.JPG" },
+    { name: "Paneer Lajawab", image: "images/Menu/Paneer Lajawab.JPG" },
+    { name: "Paneer Malai Tikka", image: "images/Menu/Paneer Malai Tikka.JPG" },
+    { name: "Paneer Pahadi", image: "images/Menu/Paneer Pahadi.JPG" },
+    { name: "Paneer Satey", image: "images/Menu/Paneer Satey.JPG" },
+    { name: "Paneer Tikka Masala", image: "images/Menu/Paneer Tikka Masala.JPG" },
+    { name: "Paneer Tikka Pizza", image: "images/Menu/Paneer Tikka Pizza.JPG" },
+    { name: "Pav Bhaji", image: "images/Menu/Pav Bhaji.JPG" },
+    { name: "Pudina Roti", image: "images/Menu/Pudina Roti.JPG" },
+    { name: "Roti", image: "images/Menu/Roti.JPG" },
+    { name: "Sada Dosa", image: "images/Menu/Sada Dosa.JPG" },
+    { name: "Sai Krishna Special Veg", image: "images/Menu/Sai Krishna Special Veg.JPG" },
+    { name: "Schezwan Noodles", image: "images/Menu/Schezwan Noodles.JPG" },
+    { name: "Set Dosa", image: "images/Menu/Set Dosa.JPG" },
+    { name: "Special Pav Bhaji", image: "images/Menu/Special Pav Bhaji.JPG" },
+    { name: "Spring Dosa", image: "images/Menu/Spring Dosa.JPG" },
+    { name: "Steam Idli", image: "images/Menu/Steam Idli.JPG" },
+    { name: "Tawa Pulao", image: "images/Menu/Tawa Pulao.JPG" },
+    { name: "Tawa Subji", image: "images/Menu/Tawa Subji.JPG" },
+    { name: "Tomato Onion Uttapam", image: "images/Menu/Tomato Onion Uttapam.JPG" },
+    { name: "Veg Biryani", image: "images/Menu/Veg Biryani.JPG" },
+    { name: "Veg Chilli Milli", image: "images/Menu/Veg Chilli Milli.JPG" },
+    { name: "Veg Crispy", image: "images/Menu/Veg Crispy.JPG" },
+    { name: "Veg Diwani Handi", image: "images/Menu/Veg Diwani Handi.JPG" },
+    { name: "Veg Fried Rice", image: "images/Menu/Veg Fried Rice.JPG" },
+    { name: "Veg Grilled Sandwich", image: "images/Menu/Veg Grilled Sandwich.JPG" },
+    { name: "Veg Hakka Noodles", image: "images/Menu/Veg Hakka Noodles.JPG" },
+    { name: "Veg Hariyali", image: "images/Menu/Veg Hariyali.JPG" },
+    { name: "Veg Hyderabadi Biryani", image: "images/Menu/Veg Hyderabadi Biryani.JPG" },
+    { name: "Veg Jalfrezi", image: "images/Menu/Veg Jalfrezi.JPG" },
+    { name: "Veg Kadai", image: "images/Menu/Veg Kadai.JPG" },
+    { name: "Veg Kolhapuri", image: "images/Menu/Veg Kolhapuri.JPG" },
+    { name: "Veg Manchow Soup", image: "images/Menu/Veg Manchow Soup.JPG" },
+    { name: "Veg Noodles Soup", image: "images/Menu/Veg Noodles Soup.JPG" },
+    { name: "Veg Sandwich", image: "images/Menu/Veg Sandwich.JPG" },
+    { name: "Veg Schezwan Fried Rice", image: "images/Menu/Veg Schezwan Fried Rice.JPG" },
+    { name: "Veg Seekh Kabab", image: "images/Menu/Veg Seekh Kabab.JPG" },
+    { name: "Veg Spring Roll", image: "images/Menu/Veg Spring Roll.JPG" },
+    { name: "Veg Triple Noodles", image: "images/Menu/Veg Triple Noodles.JPG" },
+    { name: "Watermelon Juice", image: "images/Menu/Watermelon Juice.JPG" }
+  ];
+
+  const handleViewPDF = () => {
+    window.open('/menu.pdf', '_blank');
   };
 
-  const categories = [
-    {
-      id: "breakfast",
-      name: "Breakfast",
-      color: "from-amber-400 to-orange-500",
-    },
-    { id: "pizza", name: "Pizza", color: "from-red-400 to-pink-500" },
-    {
-      id: "mumbaiChat",
-      name: "Mumbai Chat",
-      color: "from-green-400 to-emerald-600",
-    },
-    { id: "starters", name: "Starters", color: "from-blue-400 to-cyan-600" },
-    { id: "biryani", name: "Biryani", color: "from-purple-400 to-indigo-500" },
-  ];
+  const handleDownloadPDF = () => {
+    const link = document.createElement('a');
+    link.href = '/menu.pdf';
+    link.download = 'Sai Krishna Restaurant Menu.pdf';
+    link.click();
+  };
 
   return (
     <>
@@ -253,127 +170,88 @@ const Menu: React.FC = () => {
                 </span>
               </h2>
 
-              <div className="flex items-center justify-center mb-4">
+              <div className="flex items-center justify-center mb-6">
                 <div className="w-16 h-1 bg-gradient-to-r from-green-600 to-orange-500 rounded-full"></div>
                 <div className="w-3 h-3 bg-orange-500 rounded-full mx-4 animate-pulse"></div>
                 <div className="w-16 h-1 bg-gradient-to-r from-orange-500 to-green-600 rounded-full"></div>
               </div>
 
               <p
-                className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed px-4 font-light"
+                className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed px-4 font-light mb-8"
                 style={{ fontFamily: "Crimson Text, serif" }}
               >
                 Discover authentic flavors crafted with traditional recipes and
                 the finest ingredients, served with love and passion.
               </p>
+
+              {/* PDF Menu Buttons */}
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
+                <button
+                  onClick={handleViewPDF}
+                  className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-xl font-bold hover:from-green-700 hover:to-emerald-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                  data-testid="button-view-menu"
+                >
+                  <Eye className="w-5 h-5" />
+                  <span>View Full Menu</span>
+                </button>
+                <button
+                  onClick={handleDownloadPDF}
+                  className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-xl font-bold hover:from-orange-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center space-x-2"
+                  style={{ fontFamily: "Poppins, sans-serif" }}
+                  data-testid="button-download-menu"
+                >
+                  <Download className="w-5 h-5" />
+                  <span>Download Menu</span>
+                </button>
+              </div>
             </div>
 
-            {/* Category Tabs */}
-            <div
-              className={`flex flex-wrap justify-center mb-8 sm:mb-12 gap-3 sm:gap-4 transition-all duration-1000 delay-300 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-            >
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setActiveCategory(category.id)}
-                  className={`relative px-4 sm:px-6 py-2 sm:py-3 rounded-xl text-sm sm:text-base font-bold transition-all duration-500 border-2 overflow-hidden group transform hover:scale-105 shadow-lg ${
-                    activeCategory === category.id
-                      ? `bg-gradient-to-r ${category.color} text-white border-transparent scale-105 shadow-xl`
-                      : "bg-white/80 backdrop-blur-sm text-gray-700 border-green-200 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:border-green-300 hover:shadow-xl"
-                  }`}
-                  style={{ fontFamily: "Poppins, sans-serif" }}
-                >
-                  <span className="relative z-10">{category.name}</span>
-                  {activeCategory === category.id && (
-                    <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                </button>
-              ))}
-            </div>
 
             {/* Menu Items Grid */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {menuItems[activeCategory as keyof typeof menuItems].map(
-                (item, index) => (
-                  <div
-                    key={index}
-                    className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 border border-green-100 hover:border-green-300 transform hover:scale-[1.02] ${
-                      isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
-                    }`}
-                    style={{ transitionDelay: `${400 + index * 100}ms` }}
-                  >
-                    {/* Decorative background gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-transparent to-orange-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {menuItems.map((item, index) => (
+                <div
+                  key={index}
+                  className={`group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 border border-green-100 hover:border-green-300 transform hover:scale-[1.02] ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-8"
+                  }`}
+                  style={{ transitionDelay: `${400 + index * 50}ms` }}
+                  data-testid={`menu-item-${item.name.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {/* Decorative background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-50/30 via-transparent to-orange-50/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    <div className="relative">
-                      <div className="relative overflow-hidden rounded-t-2xl">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
-                        />
-                        {/* Gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      </div>
-
-                      {item.popular && (
-                        <div
-                          className="absolute top-3 left-3 bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-md"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          ⭐ Popular
-                        </div>
-                      )}
-
-                      <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md rounded-full px-3 py-1 flex items-center space-x-1 shadow-md border border-green-200 group-hover:scale-105 transition-transform duration-300">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        <span
-                          className="text-xs font-bold text-gray-800"
-                          style={{ fontFamily: "Poppins, sans-serif" }}
-                        >
-                          {item.rating}
-                        </span>
-                      </div>
+                  <div className="relative">
+                    <div className="relative overflow-hidden rounded-t-2xl">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = 'https://via.placeholder.com/300x200/059669/ffffff?text=' + encodeURIComponent(item.name);
+                        }}
+                      />
+                      {/* Gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-
-                    <div className="p-5 relative z-10">
-                      <div className="flex justify-between items-start mb-3">
-                        <h3
-                          className="text-lg font-bold text-gray-900 group-hover:text-green-700 transition-colors duration-300 leading-tight"
-                          style={{ fontFamily: "Merriweather, serif" }}
-                        >
-                          {item.name}
-                        </h3>
-                        <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-3 py-1 rounded-full shadow-md group-hover:shadow-lg transition-shadow duration-300">
-                          <span
-                            className="text-sm font-bold"
-                            style={{ fontFamily: "Poppins, sans-serif" }}
-                          >
-                            {item.price}
-                          </span>
-                        </div>
-                      </div>
-
-                      <p
-                        className="text-gray-600 text-sm leading-relaxed"
-                        style={{ fontFamily: "Poppins, sans-serif" }}
-                      >
-                        {item.description}
-                      </p>
-                    </div>
-
-                    {/* Shine effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
                   </div>
-                ),
-              )}
+
+                  <div className="p-5 relative z-10">
+                    <h3
+                      className="text-lg font-bold text-gray-900 group-hover:text-green-700 transition-colors duration-300 leading-tight text-center"
+                      style={{ fontFamily: "Merriweather, serif" }}
+                    >
+                      {item.name}
+                    </h3>
+                  </div>
+
+                  {/* Shine effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                </div>
+              ))}
             </div>
 
             {/* Call to Action Section */}
