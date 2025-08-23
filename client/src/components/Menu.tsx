@@ -146,7 +146,7 @@ const Menu: React.FC = () => {
         <div className="absolute bottom-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-gradient-to-tl from-orange-200/20 to-transparent rounded-full blur-3xl"></div>
 
         <div className="relative py-4 sm:py-6">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
             {/* Header Section */}
             <div
               className={`text-center mb-8 sm:mb-12 transition-all duration-1000 ${
@@ -209,7 +209,7 @@ const Menu: React.FC = () => {
 
 
             {/* Menu Items Grid */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {menuItems.map((item, index) => (
                 <div
                   key={index}
@@ -229,7 +229,7 @@ const Menu: React.FC = () => {
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700"
+                        className="w-full h-40 sm:h-48 object-cover group-hover:scale-110 transition-transform duration-700"
                         onError={(e) => {
                           console.log(`Failed to load image: ${item.image}`);
                           (e.target as HTMLImageElement).src = '/images/placeholder-food.jpg';
@@ -240,9 +240,9 @@ const Menu: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="p-5 relative z-10">
+                  <div className="p-3 sm:p-5 relative z-10">
                     <h3
-                      className="text-lg font-bold text-gray-900 group-hover:text-green-700 transition-colors duration-300 leading-tight text-center"
+                      className="text-base sm:text-lg font-bold text-gray-900 group-hover:text-green-700 transition-colors duration-300 leading-tight text-center"
                       style={{ fontFamily: "Merriweather, serif" }}
                     >
                       {item.name}
