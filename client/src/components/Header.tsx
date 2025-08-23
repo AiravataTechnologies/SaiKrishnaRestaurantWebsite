@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
 import {
   Menu,
   X,
@@ -15,6 +16,7 @@ const Header: React.FC = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [location] = useLocation();
 
   useEffect(() => {
     // Header animation on mount
@@ -44,12 +46,16 @@ const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleNavigation = (sectionId: string) => {
     setIsMenuOpen(false);
+    
+    // Handle scrolling for home page sections
+    if (location === "/" && (sectionId === "home" || sectionId === "about" || sectionId === "videos" || sectionId === "blog")) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -96,24 +102,26 @@ const Header: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20 py-2">
             {/* Logo Section */}
-            <div
-              className={`flex items-center -ml-2 transition-all duration-700 delay-200 ${
-                isVisible
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-4"
-              }`}
-            >
-              <div className="relative">
-                <img
-                  src="/images/logo.png"
-                  alt="Sai Krishna Restaurant Logo"
-                  className={`object-contain transition-all duration-300 ${
-                    isScrolled ? "h-14 w-auto" : "h-16 w-auto"
-                  }`}
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-orange-500/10 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            <Link to="/">
+              <div
+                className={`flex items-center -ml-2 transition-all duration-700 delay-200 ${
+                  isVisible
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 -translate-x-4"
+                }`}
+              >
+                <div className="relative cursor-pointer">
+                  <img
+                    src="/images/logo.png"
+                    alt="Sai Krishna Restaurant Logo"
+                    className={`object-contain transition-all duration-300 ${
+                      isScrolled ? "h-14 w-auto" : "h-16 w-auto"
+                    }`}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-orange-500/10 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
               </div>
-            </div>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav
@@ -123,25 +131,98 @@ const Header: React.FC = () => {
                   : "opacity-0 translate-y-4"
               }`}
             >
-              {[
-                { id: "home", label: "Home" },
-                { id: "about", label: "About Us" },
-                { id: "menu", label: "Menu" },
-                { id: "gallery", label: "Gallery" },
-                { id: "videos", label: "Videos" },
-                { id: "blog", label: "Blog" },
-                { id: "contact", label: "Contact Us" },
-              ].map((item) => (
+              {/* Home and About navigation */}
+              <Link to="/">
                 <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="relative px-4 py-2 text-gray-700 hover:text-green-700 transition-all duration-300 font-medium text-sm group"
-                  data-testid={`nav-${item.id}`}
+                  onClick={() => handleNavigation("home")}
+                  className={`relative px-4 py-2 hover:text-green-700 transition-all duration-300 font-medium text-sm group ${
+                    location === "/" ? "text-green-700" : "text-gray-700"
+                  }`}
+                  data-testid="nav-home"
                 >
-                  <span className="relative z-10">{item.label}</span>
+                  <span className="relative z-10">Home</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100"></div>
                 </button>
-              ))}
+              </Link>
+              
+              <Link to="/">
+                <button
+                  onClick={() => handleNavigation("about")}
+                  className={`relative px-4 py-2 hover:text-green-700 transition-all duration-300 font-medium text-sm group ${
+                    location === "/" ? "text-green-700" : "text-gray-700"
+                  }`}
+                  data-testid="nav-about"
+                >
+                  <span className="relative z-10">About Us</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100"></div>
+                </button>
+              </Link>
+
+              {/* Menu page navigation */}
+              <Link to="/menu">
+                <button
+                  className={`relative px-4 py-2 hover:text-green-700 transition-all duration-300 font-medium text-sm group ${
+                    location === "/menu" ? "text-green-700" : "text-gray-700"
+                  }`}
+                  data-testid="nav-menu"
+                >
+                  <span className="relative z-10">Menu</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100"></div>
+                </button>
+              </Link>
+
+              {/* Gallery page navigation */}
+              <Link to="/gallery">
+                <button
+                  className={`relative px-4 py-2 hover:text-green-700 transition-all duration-300 font-medium text-sm group ${
+                    location === "/gallery" ? "text-green-700" : "text-gray-700"
+                  }`}
+                  data-testid="nav-gallery"
+                >
+                  <span className="relative z-10">Gallery</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100"></div>
+                </button>
+              </Link>
+
+              {/* Home page sections */}
+              <Link to="/">
+                <button
+                  onClick={() => handleNavigation("videos")}
+                  className={`relative px-4 py-2 hover:text-green-700 transition-all duration-300 font-medium text-sm group ${
+                    location === "/" ? "text-green-700" : "text-gray-700"
+                  }`}
+                  data-testid="nav-videos"
+                >
+                  <span className="relative z-10">Videos</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100"></div>
+                </button>
+              </Link>
+
+              <Link to="/">
+                <button
+                  onClick={() => handleNavigation("blog")}
+                  className={`relative px-4 py-2 hover:text-green-700 transition-all duration-300 font-medium text-sm group ${
+                    location === "/" ? "text-green-700" : "text-gray-700"
+                  }`}
+                  data-testid="nav-blog"
+                >
+                  <span className="relative z-10">Blog</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100"></div>
+                </button>
+              </Link>
+
+              {/* Contact page navigation */}
+              <Link to="/contact">
+                <button
+                  className={`relative px-4 py-2 hover:text-green-700 transition-all duration-300 font-medium text-sm group ${
+                    location === "/contact" ? "text-green-700" : "text-gray-700"
+                  }`}
+                  data-testid="nav-contact"
+                >
+                  <span className="relative z-10">Contact Us</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-100 to-orange-100 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-95 group-hover:scale-100"></div>
+                </button>
+              </Link>
             </nav>
 
             {/* Mobile menu button */}
@@ -165,24 +246,72 @@ const Header: React.FC = () => {
           {isMenuOpen && (
             <div className="md:hidden bg-white/80 backdrop-blur-md border-t border-gray-100/50 rounded-b-xl shadow-lg">
               <div className="py-4 space-y-1">
-                {[
-                  { id: "home", label: "Home" },
-                  { id: "about", label: "About Us" },
-                  { id: "menu", label: "Menu" },
-                  { id: "gallery", label: "Gallery" },
-                  { id: "videos", label: "Videos" },
-                  { id: "blog", label: "Blog" },
-                  { id: "contact", label: "Contact Us" },
-                ].map((item) => (
+                <Link to="/">
                   <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
+                    onClick={() => handleNavigation("home")}
                     className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:text-green-700 transition-all duration-300 font-medium border-l-4 border-transparent hover:border-green-500"
-                    data-testid={`mobile-nav-${item.id}`}
+                    data-testid="mobile-nav-home"
                   >
-                    {item.label}
+                    Home
                   </button>
-                ))}
+                </Link>
+                
+                <Link to="/">
+                  <button
+                    onClick={() => handleNavigation("about")}
+                    className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:text-green-700 transition-all duration-300 font-medium border-l-4 border-transparent hover:border-green-500"
+                    data-testid="mobile-nav-about"
+                  >
+                    About Us
+                  </button>
+                </Link>
+
+                <Link to="/menu">
+                  <button
+                    className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:text-green-700 transition-all duration-300 font-medium border-l-4 border-transparent hover:border-green-500"
+                    data-testid="mobile-nav-menu"
+                  >
+                    Menu
+                  </button>
+                </Link>
+
+                <Link to="/gallery">
+                  <button
+                    className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:text-green-700 transition-all duration-300 font-medium border-l-4 border-transparent hover:border-green-500"
+                    data-testid="mobile-nav-gallery"
+                  >
+                    Gallery
+                  </button>
+                </Link>
+
+                <Link to="/">
+                  <button
+                    onClick={() => handleNavigation("videos")}
+                    className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:text-green-700 transition-all duration-300 font-medium border-l-4 border-transparent hover:border-green-500"
+                    data-testid="mobile-nav-videos"
+                  >
+                    Videos
+                  </button>
+                </Link>
+
+                <Link to="/">
+                  <button
+                    onClick={() => handleNavigation("blog")}
+                    className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:text-green-700 transition-all duration-300 font-medium border-l-4 border-transparent hover:border-green-500"
+                    data-testid="mobile-nav-blog"
+                  >
+                    Blog
+                  </button>
+                </Link>
+
+                <Link to="/contact">
+                  <button
+                    className="block w-full text-left px-6 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-green-50 hover:to-orange-50 hover:text-green-700 transition-all duration-300 font-medium border-l-4 border-transparent hover:border-green-500"
+                    data-testid="mobile-nav-contact"
+                  >
+                    Contact Us
+                  </button>
+                </Link>
               </div>
             </div>
           )}
