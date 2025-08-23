@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "wouter";
 
 const Hero: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -329,25 +330,46 @@ const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Single Action Button - Better spacing */}
+          {/* Action Buttons - Better spacing */}
           <div
-            className={`flex justify-center px-2 sm:px-4 pb-6 transition-all duration-1000 delay-900 ${
+            className={`flex flex-col sm:flex-row justify-center items-center gap-4 px-2 sm:px-4 pb-6 transition-all duration-1000 delay-900 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
             }`}
           >
+            <Link to="/menu">
+              <button
+                className="group bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-2 border-white text-sm"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+                data-testid="button-view-menu-hero"
+              >
+                <span className="flex items-center justify-center space-x-2">
+                  <span>View Our Menu</span>
+                  <svg
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </Link>
+            
             <button
               className="group bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-2 border-white text-sm"
               style={{ fontFamily: "Poppins, sans-serif" }}
-              onClick={() => {
-                document
-                  .getElementById("menu")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
+              data-testid="button-reserve-table-hero"
             >
               <span className="flex items-center justify-center space-x-2">
-                <span>View Our Menu</span>
+                <span>Reserve Table</span>
                 <svg
                   className="w-4 h-4 group-hover:translate-x-1 transition-transform"
                   fill="none"
@@ -358,7 +380,7 @@ const Hero: React.FC = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 5l7 7-7 7"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
               </span>
