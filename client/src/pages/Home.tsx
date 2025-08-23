@@ -4,7 +4,6 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import Gallery from "../components/Gallery";
 import Videos from "../components/Videos";
-import Blog from "../components/Blog";
 import OnlineOrdering from "../components/OnlineOrdering";
 import Reviews from "../components/Reviews";
 import Footer from "../components/Footer";
@@ -19,7 +18,6 @@ const Home: React.FC = () => {
       <About />
       <Gallery />
       <Videos />
-      <Blog />
       <OnlineOrdering />
       <Reviews />
       <Footer />
