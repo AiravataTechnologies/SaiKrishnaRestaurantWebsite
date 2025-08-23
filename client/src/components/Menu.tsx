@@ -6,21 +6,33 @@ const Menu: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Fallback timer to show content after 1 second if intersection observer doesn't fire
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          clearTimeout(fallbackTimer);
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 },
+      { 
+        threshold: 0.01,
+        rootMargin: '50px'
+      },
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   // Menu items based on actual images in /client/public/images/Menu
