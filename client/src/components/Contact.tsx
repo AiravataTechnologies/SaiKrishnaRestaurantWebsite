@@ -1,9 +1,22 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Clock, Mail } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, Send, User, Smartphone, Users, Calendar, MessageSquare, FileText } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<string>('');
   const sectionRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    mobile: '',
+    seats: '',
+    timing: '',
+    purpose: '',
+    other: ''
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,6 +35,57 @@ const Contact: React.FC = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('');
+
+    try {
+      // TODO: Replace with actual EmailJS credentials when provided
+      const serviceId = 'YOUR_SERVICE_ID';
+      const templateId = 'YOUR_TEMPLATE_ID';
+      const publicKey = 'YOUR_PUBLIC_KEY';
+
+      const templateParams = {
+        to_email: 'info@saikrishnarestaurant.com',
+        from_name: formData.name,
+        customer_name: formData.name,
+        mobile_number: formData.mobile,
+        number_of_seats: formData.seats,
+        timing: formData.timing,
+        purpose: formData.purpose,
+        other_details: formData.other,
+        restaurant_name: 'Sai Krishna Restaurant'
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      setSubmitStatus('success');
+      setFormData({
+        name: '',
+        mobile: '',
+        seats: '',
+        timing: '',
+        purpose: '',
+        other: ''
+      });
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus(''), 5000);
+    }
+  };
   return (
     <section
       ref={sectionRef}
@@ -50,7 +114,7 @@ const Contact: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
           {/* Contact Information */}
           <div
             className={`space-y-6 sm:space-y-8 transition-all duration-1000 delay-300 ${
@@ -125,6 +189,191 @@ const Contact: React.FC = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Table Reservation Form */}
+          <div
+            className={`bg-gradient-to-br from-green-50 to-orange-50 rounded-2xl p-6 sm:p-8 shadow-lg border border-green-100 transition-all duration-1000 delay-500 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }`}
+          >
+            <div className="text-center mb-6">
+              <div className="flex justify-center mb-3">
+                <div className="text-orange-500 text-xl sm:text-2xl">🍽️ ✦ 🍽️</div>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
+                Table Reservation
+              </h3>
+              <p className="text-gray-600 text-sm sm:text-base">
+                Reserve your table for an unforgettable dining experience
+              </p>
+            </div>
+
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+              {/* Name Field */}
+              <div className="space-y-2">
+                <label className="flex items-center text-sm font-semibold text-gray-700">
+                  <User className="w-4 h-4 mr-2 text-green-600" />
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                  placeholder="Enter your full name"
+                  data-testid="input-name"
+                />
+              </div>
+
+              {/* Mobile Number Field */}
+              <div className="space-y-2">
+                <label className="flex items-center text-sm font-semibold text-gray-700">
+                  <Smartphone className="w-4 h-4 mr-2 text-green-600" />
+                  Mobile Number *
+                </label>
+                <input
+                  type="tel"
+                  name="mobile"
+                  value={formData.mobile}
+                  onChange={handleInputChange}
+                  required
+                  pattern="[0-9]{10}"
+                  className="w-full px-4 py-3 rounded-xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                  placeholder="Enter 10-digit mobile number"
+                  data-testid="input-mobile"
+                />
+              </div>
+
+              {/* Number of Seats Field */}
+              <div className="space-y-2">
+                <label className="flex items-center text-sm font-semibold text-gray-700">
+                  <Users className="w-4 h-4 mr-2 text-green-600" />
+                  Number of Seats *
+                </label>
+                <select
+                  name="seats"
+                  value={formData.seats}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                  data-testid="select-seats"
+                >
+                  <option value="">Select number of seats</option>
+                  <option value="1">1 Person</option>
+                  <option value="2">2 People</option>
+                  <option value="3">3 People</option>
+                  <option value="4">4 People</option>
+                  <option value="5">5 People</option>
+                  <option value="6">6 People</option>
+                  <option value="7">7 People</option>
+                  <option value="8">8 People</option>
+                  <option value="9">9 People</option>
+                  <option value="10">10 People</option>
+                  <option value="more">More than 10</option>
+                </select>
+              </div>
+
+              {/* Timing Field */}
+              <div className="space-y-2">
+                <label className="flex items-center text-sm font-semibold text-gray-700">
+                  <Calendar className="w-4 h-4 mr-2 text-green-600" />
+                  Preferred Timing *
+                </label>
+                <input
+                  type="datetime-local"
+                  name="timing"
+                  value={formData.timing}
+                  onChange={handleInputChange}
+                  required
+                  min={new Date().toISOString().slice(0, 16)}
+                  className="w-full px-4 py-3 rounded-xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                  data-testid="input-timing"
+                />
+              </div>
+
+              {/* Purpose Field */}
+              <div className="space-y-2">
+                <label className="flex items-center text-sm font-semibold text-gray-700">
+                  <MessageSquare className="w-4 h-4 mr-2 text-green-600" />
+                  Purpose of Booking *
+                </label>
+                <select
+                  name="purpose"
+                  value={formData.purpose}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white/80 backdrop-blur-sm"
+                  data-testid="select-purpose"
+                >
+                  <option value="">Select purpose</option>
+                  <option value="family-dinner">Family Dinner</option>
+                  <option value="birthday-celebration">Birthday Celebration</option>
+                  <option value="anniversary">Anniversary</option>
+                  <option value="business-meeting">Business Meeting</option>
+                  <option value="date-night">Date Night</option>
+                  <option value="casual-dining">Casual Dining</option>
+                  <option value="festival-celebration">Festival Celebration</option>
+                  <option value="group-gathering">Group Gathering</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              {/* Other Details Field */}
+              <div className="space-y-2">
+                <label className="flex items-center text-sm font-semibold text-gray-700">
+                  <FileText className="w-4 h-4 mr-2 text-green-600" />
+                  Other Details
+                </label>
+                <textarea
+                  name="other"
+                  value={formData.other}
+                  onChange={handleInputChange}
+                  rows={3}
+                  className="w-full px-4 py-3 rounded-xl border border-green-200 focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all duration-300 bg-white/80 backdrop-blur-sm resize-none"
+                  placeholder="Any special requirements, dietary preferences, or additional information..."
+                  data-testid="textarea-other"
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full py-4 px-6 rounded-xl font-bold text-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 ${
+                  isSubmitting
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-green-600 to-orange-500 hover:from-green-700 hover:to-orange-600'
+                }`}
+                data-testid="button-submit-reservation"
+              >
+                {isSubmitting ? (
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                ) : (
+                  <>
+                    <Send className="w-5 h-5" />
+                    <span>Reserve Table</span>
+                  </>
+                )}
+              </button>
+
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl text-center">
+                  🎉 Your table reservation request has been sent successfully! We'll contact you shortly.
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl text-center">
+                  ❌ Failed to send reservation. Please try again or call us directly.
+                </div>
+              )}
+            </form>
           </div>
 
           {/* Google Maps */}

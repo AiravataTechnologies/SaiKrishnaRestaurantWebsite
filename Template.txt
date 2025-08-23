@@ -1,0 +1,271 @@
+Subject: 🍽️ New Table Reservation Request - Sai Krishna Restaurant
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Reservation Request</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f8fdf8 0%, #fff8f0 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            border: 1px solid #e5f3e5;
+        }
+        .header {
+            background: linear-gradient(135deg, #059669 0%, #ea580c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.95;
+            font-size: 16px;
+        }
+        .content {
+            padding: 30px;
+        }
+        .reservation-details {
+            background: linear-gradient(135deg, #f0fdf4 0%, #fff7ed 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #059669;
+        }
+        .detail-row {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #059669, #16a34a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #059669;
+            min-width: 120px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .detail-value {
+            color: #374151;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .special-notes {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .special-notes h3 {
+            color: #d97706;
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+        .footer {
+            background: #f9fafb;
+            padding: 25px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .contact-item {
+            text-align: center;
+            margin: 10px;
+        }
+        .contact-item strong {
+            color: #059669;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .action-buttons {
+            margin: 25px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #059669, #ea580c);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        .ornament {
+            text-align: center;
+            font-size: 24px;
+            color: #ea580c;
+            margin: 15px 0;
+        }
+        @media (max-width: 600px) {
+            .contact-info {
+                flex-direction: column;
+            }
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+            .detail-icon {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🍽️ New Table Reservation</h1>
+            <p>Sai Krishna Restaurant - Authentic South Indian Cuisine</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="ornament">✦ ❋ ✦</div>
+            
+            <p>Dear Restaurant Team,</p>
+            <p>You have received a new table reservation request with the following details:</p>
+
+            <!-- Reservation Details -->
+            <div class="reservation-details">
+                <div class="detail-row">
+                    <div class="detail-icon">👤</div>
+                    <div>
+                        <div class="detail-label">Customer Name</div>
+                        <div class="detail-value">{{customer_name}}</div>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-icon">📱</div>
+                    <div>
+                        <div class="detail-label">Mobile Number</div>
+                        <div class="detail-value">{{mobile_number}}</div>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-icon">👥</div>
+                    <div>
+                        <div class="detail-label">Number of Seats</div>
+                        <div class="detail-value">{{number_of_seats}}</div>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-icon">⏰</div>
+                    <div>
+                        <div class="detail-label">Preferred Timing</div>
+                        <div class="detail-value">{{timing}}</div>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <div class="detail-icon">🎯</div>
+                    <div>
+                        <div class="detail-label">Purpose</div>
+                        <div class="detail-value">{{purpose}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Special Notes (if any) -->
+            {{#if other_details}}
+            <div class="special-notes">
+                <h3>📝 Additional Details & Special Requirements</h3>
+                <p>{{other_details}}</p>
+            </div>
+            {{/if}}
+
+            <div class="ornament">❋ ✦ ❋</div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <p><strong>Next Steps:</strong></p>
+                <a href="tel:{{mobile_number}}" class="btn">📞 Call Customer</a>
+                <a href="sms:{{mobile_number}}" class="btn">💬 Send SMS</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <h3 style="color: #059669; margin-bottom: 15px;">{{restaurant_name}}</h3>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>📍 Address</strong>
+                    Ground Floor, Plot No 31, Mahakali Caves Rd,<br>
+                    opp. Hanuman Mandir, Dhawalgiri,<br>
+                    Sher E Punjab Colony, Andheri East,<br>
+                    Mumbai, Maharashtra 400093
+                </div>
+                
+                <div class="contact-item">
+                    <strong>📞 Phone</strong>
+                    +91 90049 89629
+                </div>
+                
+                <div class="contact-item">
+                    <strong>✉️ Email</strong>
+                    info@saikrishnarestaurant.com
+                </div>
+                
+                <div class="contact-item">
+                    <strong>🕒 Hours</strong>
+                    Daily: 9:00 AM - 12:00 AM<br>
+                    <em>Open 7 days a week</em>
+                </div>
+            </div>
+
+            <div class="ornament">🍽️ ✦ 🍽️</div>
+            <p style="margin: 15px 0 0 0; color: #6b7280; font-size: 14px;">
+                This email was generated from your restaurant website's table reservation form.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
