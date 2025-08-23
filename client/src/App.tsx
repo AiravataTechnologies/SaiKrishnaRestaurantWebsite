@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import GalleryPage from "./pages/GalleryPage";
 import ContactPage from "./pages/ContactPage";
 import MenuPage from "./pages/MenuPage";
+import BlogPage from "./pages/BlogPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/gallery" component={GalleryPage} />
         <Route path="/contact" component={ContactPage} />
         <Route path="/menu" component={MenuPage} />
+        <Route path="/blog" component={BlogPage} />
         <Route>
           <Home />
         </Route>
